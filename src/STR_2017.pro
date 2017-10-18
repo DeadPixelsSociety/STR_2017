@@ -5,6 +5,8 @@ CONFIG -= qt
 
 DEFINES += SFML_STATIC
 
+PRECOMPILED_HEADER += stdafx.H
+
 ##SFML
 LIBS += -LC:/SFML-2.4.2/lib
 
@@ -23,4 +25,14 @@ INCLUDEPATH += C:/SFML-2.4.2/include
 DEPENDPATH += C:/SFML-2.4.2/include
 
 ##Sources
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    gameboard.cpp \
+    tile.cpp \
+    stdafx.cpp \
+    drawmanager.cpp
+
+HEADERS += \
+    gameboard.h \
+    tile.h \
+    stdafx.h \
+    drawmanager.h
