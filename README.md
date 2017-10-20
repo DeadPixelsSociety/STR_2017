@@ -1,2 +1,2 @@
 # STR_2017
-azerty
+**Space Traveller Robots** est un jeu steampunk/science-fiction dans lequel le joueur tente de regagner sa planète d'origine. Il doit pour cela faire des arrêts réguliers afin de faire le plein de son vaisseau. Afin de récolter le carburant nécessaire, il doit envoyer des robots creuser le sous-sol. Mais il doit prendre garde à bien gérer ses robots, car, laissés trop longtemps sans surveillance, commencent à faire n'importe quoi.
