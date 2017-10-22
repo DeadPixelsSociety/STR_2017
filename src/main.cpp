@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "gameboard.h"
+#include "inputmanager.h"
 
 using namespace std;
 
@@ -11,31 +12,44 @@ int main()
 
     window.create(sf::VideoMode(800, 600), "STR_2017");
     g_drawManager.SetWindow(&window);
+    window.setKeyRepeatEnabled(false); // OnKeyPressed
 
     sf::View view1;
     view1.setSize(1920, 1080);
     window.setView(view1);
 
     GameBoard * pGameBoard = new GameBoard(25, 25);
+    InputManager * pInputs = new InputManager();
+    pInputs->Initialize(pGameBoard);
 
-    // on fait tourner le programme jusqu'à ce que la fenêtre soit fermée
+    sf::Clock clock;
+
     while (window.isOpen())
     {
-        //pGameBoard->DbgDisplayGrid(window, true);
+        float dt = clock.restart().asSeconds();
 
-        // on inspecte tous les évènements de la fenêtre qui ont été émis depuis la précédente itération
         sf::Event event;
         while (window.pollEvent(event))
         {
-            // évènement "fermeture demandée" : on ferme la fenêtre
-            if (event.type == sf::Event::Closed)
+            if (!pInputs->Update(event))
             {
-                window.close();
+                if (event.type == sf::Event::Closed)
+                {
+                    window.close();
+                }
             }
         }
 
-        g_drawManager.Draw();
-        window.display();
+        if (!pInputs->IsGamePaused())
+        {
+            pGameBoard->Update(dt);
+
+            g_drawManager.Draw();
+
+            //pGameBoard->DbgDisplayGrid(window, false);
+
+            window.display();
+        }
     }
 
     return 0;

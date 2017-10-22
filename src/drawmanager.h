@@ -27,7 +27,7 @@ private:
     std::vector<sf::Sprite *> m_aSpriteList;
     std::vector<sf::Sprite *> m_aBuildingList;
 
-    // robot: vector<Robots> and get current sprite ?
+    // robot: vector<Robots *> and draw each current sprites ?
 
     // GUI: need to think about this
 };

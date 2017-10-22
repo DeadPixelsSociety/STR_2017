@@ -29,10 +29,12 @@ SOURCES += main.cpp \
     gameboard.cpp \
     tile.cpp \
     stdafx.cpp \
-    drawmanager.cpp
+    drawmanager.cpp \
+    inputmanager.cpp
 
 HEADERS += \
     gameboard.h \
     tile.h \
     stdafx.h \
-    drawmanager.h
+    drawmanager.h \
+    inputmanager.h

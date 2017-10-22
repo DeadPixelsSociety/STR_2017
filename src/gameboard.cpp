@@ -1,4 +1,5 @@
 #include "gameboard.h"
+#include "tile.h"
 
 using namespace std;
 using namespace sf;
@@ -22,6 +23,43 @@ GameBoard::GameBoard(int width, int height)
     }
 }
 
+void GameBoard::Update(float dt)
+{
+    // Update all elements related to game board
+}
+
+////////////////////////////////////////////
+//////////// MOUSE EVENTS ://///////////////
+////////////////////////////////////////////
+
+void GameBoard::OnMouseRightPressed(int x, int y)
+{
+
+}
+
+void GameBoard::OnMouseRightReleased(int x, int y)
+{
+    // give order to selected robots
+}
+
+void GameBoard::OnMouseLeftPressed(int x, int y)
+{
+    // begin selection area
+}
+
+void GameBoard::OnMouseLeftReleased(int x, int y)
+{
+    // end selection area
+}
+
+void GameBoard::OnMouseMoved(int x, int y)
+{
+    // continue selection area
+}
+
+
+
+// Debug function
 void GameBoard::DbgDisplayGrid(RenderWindow & window, bool cartesian /* = true */)
 {
     for (int i = 0; i < m_iWidth; ++i)
