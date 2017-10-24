@@ -1,7 +1,7 @@
 #ifndef DRAWMANAGER_H
 #define DRAWMANAGER_H
 
-#include "stdafx.h"
+#include <SFML/Graphics.hpp>
 
 class DrawManager
 {
