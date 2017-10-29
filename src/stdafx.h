@@ -13,10 +13,12 @@
 //
 // Game includes
 #include "drawmanager.h"
+#include "cameramanager.h"
 
 //
 // Global definitions
-extern DrawManager g_drawManager;
+extern  DrawManager     g_drawManager;
+extern  CameraManager   g_cameraManager;
 
 //
 // Common functions

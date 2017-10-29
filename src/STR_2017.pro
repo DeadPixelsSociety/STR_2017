@@ -30,11 +30,13 @@ SOURCES += main.cpp \
     tile.cpp \
     stdafx.cpp \
     drawmanager.cpp \
-    inputmanager.cpp
+    inputmanager.cpp \
+    cameramanager.cpp
 
 HEADERS += \
     gameboard.h \
     tile.h \
     stdafx.h \
     drawmanager.h \
-    inputmanager.h
+    inputmanager.h \
+    cameramanager.h

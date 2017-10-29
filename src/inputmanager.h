@@ -15,6 +15,11 @@ public:
 
     bool    IsGamePaused    (void);
 
+    bool    IsCameraLeft    (void);
+    bool    IsCameraRight   (void);
+    bool    IsCameraTop     (void);
+    bool    IsCameraDown    (void);
+
 private:
 
     bool            IsInGameBoard           (int x, int y);
@@ -29,7 +34,12 @@ private:
 
 private:
 
-    bool            m_iIsGamePaused;
+    bool            m_bIsGamePaused;
+
+    bool            m_bCameraLeft;
+    bool            m_bCameraRight;
+    bool            m_bCameraDown;
+    bool            m_bCameraTop;
 
     GameBoard *     m_pGameBoard;
     // GameGUI *    m_pGameGUI <- TODO

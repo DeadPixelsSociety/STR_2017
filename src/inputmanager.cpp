@@ -9,7 +9,12 @@ InputManager::InputManager()
 
 void InputManager::Initialize(GameBoard * pGameBoard)
 {
-    m_iIsGamePaused = false;
+    m_bIsGamePaused = false;
+    m_bCameraLeft = false;
+    m_bCameraRight = false;
+    m_bCameraDown = false;
+    m_bCameraTop = false;
+
     m_pGameBoard = pGameBoard;
 }
 
@@ -17,21 +22,91 @@ bool InputManager::Update(Event & event)
 {
     bool isInputEvent = false;
 
-    if (!m_iIsGamePaused)
+    if (!m_bIsGamePaused)
     {
         switch(event.type)
         {
             case Event::KeyPressed:
             {
+                switch(event.key.code)
+                {
+                    case Keyboard::Up:
+                    case Keyboard::Z:
+                    {
+                        m_bCameraTop = true;
+                    }
+                    break;
+
+                    case Keyboard::Left:
+                    case Keyboard::Q:
+                    {
+                        m_bCameraLeft = true;
+                    }
+                    break;
+
+                    case Keyboard::Down:
+                    case Keyboard::S:
+                    {
+                        m_bCameraDown = true;
+                    }
+                    break;
+
+                    case Keyboard::Right:
+                    case Keyboard::D:
+                    {
+                        m_bCameraRight = true;
+                    }
+                    break;
+
+                    default:
+                    {
+                    }
+                }
                 isInputEvent= true;
             }
             break;
 
             case Event::KeyReleased:
             {
-                if (Keyboard::P == event.key.code)
+                switch(event.key.code)
                 {
-                    m_iIsGamePaused = true;
+                    case Keyboard::Up:
+                    case Keyboard::Z:
+                    {
+                        m_bCameraTop = false;
+                    }
+                    break;
+
+                    case Keyboard::Left:
+                    case Keyboard::Q:
+                    {
+                        m_bCameraLeft = false;
+                    }
+                    break;
+
+                    case Keyboard::Down:
+                    case Keyboard::S:
+                    {
+                        m_bCameraDown = false;
+                    }
+                    break;
+
+                    case Keyboard::Right:
+                    case Keyboard::D:
+                    {
+                        m_bCameraRight = false;
+                    }
+                    break;
+
+                    case Keyboard::P:
+                    {
+                       m_bIsGamePaused = true;
+                    }
+                    break;
+
+                    default:
+                    {
+                    }
                 }
 
                 isInputEvent= true;
@@ -84,7 +159,7 @@ bool InputManager::Update(Event & event)
         {
             if (Keyboard::isKeyPressed(Keyboard::P))
             {
-                m_iIsGamePaused = false;
+                m_bIsGamePaused = false;
             }
 
             isInputEvent= true;
@@ -96,7 +171,27 @@ bool InputManager::Update(Event & event)
 
 bool InputManager::IsGamePaused(void)
 {
-    return(m_iIsGamePaused);
+    return(m_bIsGamePaused);
+}
+
+bool InputManager::IsCameraLeft(void)
+{
+    return(m_bCameraLeft);
+}
+
+bool InputManager::IsCameraRight(void)
+{
+    return(m_bCameraRight);
+}
+
+bool InputManager::IsCameraTop(void)
+{
+    return(m_bCameraTop);
+}
+
+bool InputManager::IsCameraDown(void)
+{
+    return(m_bCameraDown);
 }
 
 ////////////////////////////////////////////

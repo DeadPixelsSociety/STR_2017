@@ -8,11 +8,9 @@ class Tile;
 class GameBoard: public IInputEvents
 {
 public:
-    GameBoard(int width, int height);
+    GameBoard(int width, int height, sf::RenderWindow * pWindow);
 
     void    Update  (float dt);
-
-    void    DbgDisplayGrid (sf::RenderWindow & window, bool cartesian = true);
 
     virtual void    OnMouseRightPressed     (int x, int y) override;
     virtual void    OnMouseRightReleased    (int x, int y) override;
@@ -22,7 +20,14 @@ public:
 
     virtual void    OnMouseMoved            (int x, int y) override;
 
+    // DBG
+    void    DbgDisplayGrid  (bool cartesian = true);
+    void    DbgDrawCenter   (void);
+
 private:
+
+    sf::RenderWindow * m_pWindow;
+
     int m_iWidth;
     int m_iHeight;
     std::vector<std::vector<Tile *>> m_aGameBoard;

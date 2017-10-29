@@ -4,9 +4,10 @@
 using namespace std;
 using namespace sf;
 
-GameBoard::GameBoard(int width, int height)
+GameBoard::GameBoard(int width, int height, RenderWindow * pWindow)
 : m_iWidth(width)
 , m_iHeight(height)
+, m_pWindow(pWindow)
 {
     Vector2f tilePos(0.0f, 0.0f);
     for (int i = 0; i < m_iWidth; ++i)
@@ -45,6 +46,8 @@ void GameBoard::OnMouseRightReleased(int x, int y)
 void GameBoard::OnMouseLeftPressed(int x, int y)
 {
     // begin selection area
+    Vector2f map = m_pWindow->mapPixelToCoords(Vector2i(x,y), *g_cameraManager.GetCamera());
+    printf("%f, %f\n", map.x, map.y);
 }
 
 void GameBoard::OnMouseLeftReleased(int x, int y)
@@ -58,9 +61,8 @@ void GameBoard::OnMouseMoved(int x, int y)
 }
 
 
-
 // Debug function
-void GameBoard::DbgDisplayGrid(RenderWindow & window, bool cartesian /* = true */)
+void GameBoard::DbgDisplayGrid(bool cartesian /* = true */)
 {
     for (int i = 0; i < m_iWidth; ++i)
     {
@@ -83,7 +85,7 @@ void GameBoard::DbgDisplayGrid(RenderWindow & window, bool cartesian /* = true *
             tileShape.setOutlineThickness(5);
             tileShape.setOutlineColor(sf::Color(250, 150, 100));
             tileShape.setOrigin(TILE_WIDTH / 2, TILE_HEIGHT / 2);
-            window.draw(tileShape);
+            m_pWindow->draw(tileShape);
         }
     }
 
@@ -105,7 +107,16 @@ void GameBoard::DbgDisplayGrid(RenderWindow & window, bool cartesian /* = true *
             tilePoint.setPosition(pos);
             tilePoint.setFillColor(sf::Color(250, 0, 0));
             tilePoint.setOrigin(TILE_WIDTH / 2, TILE_HEIGHT / 2);
-            window.draw(tilePoint);
+            m_pWindow->draw(tilePoint);
         }
     }
+}
+
+// Debug function
+void GameBoard::DbgDrawCenter(void)
+{
+    sf::RectangleShape tileShape = sf::RectangleShape(sf::Vector2f(5, 5));
+    tileShape.setPosition(0,0);
+    tileShape.setOrigin(2.5, 2.5);
+    m_pWindow->draw(tileShape);
 }

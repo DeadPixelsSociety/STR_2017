@@ -3,8 +3,8 @@
 
 #include "stdafx.h"
 
-#define TILE_WIDTH 64
-#define TILE_HEIGHT 64
+#define TILE_WIDTH 32
+#define TILE_HEIGHT 32
 
 class Tile
 {
