@@ -54,7 +54,7 @@ int main()
         {
             pGameBoard->Update(dt);
             g_cameraManager.Update(dt);
-
+            window.setView(*g_cameraManager.GetCamera());
 
             g_drawManager.Draw();
 
