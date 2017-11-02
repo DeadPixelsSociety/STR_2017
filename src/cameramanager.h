@@ -1,9 +1,22 @@
 #ifndef CAMERAMANAGER_H
 #define CAMERAMANAGER_H
 
+///                                             ///
+/// \file cameramanager.h                       ///
+/// \brief Header de la classe CameraManager    ///
+///                                             ///
+
 #include <SFML/Graphics.hpp>
 
 class InputManager;
+
+///                                                                         ///
+/// \class CameraManager                                                    ///
+/// \brief Gestion de la vue                                                ///
+///                                                                         ///
+/// Gestion de la vue en utilisant la classe sf::View de la SFML ainsi      ///
+/// que la classe InputManager pour les intéractions utilisateur.           ///
+///                                                                         ///
 
 class CameraManager
 {

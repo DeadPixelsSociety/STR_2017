@@ -1,10 +1,24 @@
 #ifndef TILE_H
 #define TILE_H
 
+///                                     ///
+/// \file tile.h                        ///
+/// \brief Header de la classe Tile     ///
+///                                     ///
+
 #include "stdafx.h"
 
 #define TILE_WIDTH 32
 #define TILE_HEIGHT 32
+
+///                                                                 ///
+/// \class Tile                                                     ///
+/// \brief Case affichable                                          ///
+///                                                                 ///
+/// Case servant de base pour l'affichage du terrain isométrique.   ///
+/// Possède une texture ainsi qu'un sprite.                         ///
+/// Sa position peut être obtenue de façon standard ou cartésienne. ///
+///                                                                 ///
 
 class Tile
 {

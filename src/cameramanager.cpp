@@ -1,3 +1,9 @@
+
+///                                                        ///
+/// \file cameramanager.cpp                                ///
+/// \brief Implémentation de la classe CameraManager       ///
+///                                                        ///
+
 #include "cameramanager.h"
 #include "inputmanager.h"
 
@@ -11,6 +17,11 @@ void CameraManager::Initialize(sf::View *pCamera, InputManager *pInputManager, f
     m_pInputManager = pInputManager;
     m_fCameraSpeed = cameraSpeed;
 }
+
+///
+/// \brief Met à jour la caméra
+/// \param dt Le delta temps
+///
 
 void CameraManager::Update(float dt)
 {
@@ -32,6 +43,11 @@ void CameraManager::Update(float dt)
         m_pCamera->move(0.0f, -m_fCameraSpeed * 60 * dt);
     }
 }
+
+///
+/// \brief Renvoi la caméra
+/// \return Pointeur sur l'instance de sf::View
+///
 
 sf::View * CameraManager::GetCamera(void)
 {
