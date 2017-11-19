@@ -17,7 +17,6 @@ class InputManager;
 /// Gestion de la vue en utilisant la classe sf::View de la SFML ainsi      ///
 /// que la classe InputManager pour les intéractions utilisateur.           ///
 ///                                                                         ///
-
 class CameraManager
 {
 public:
@@ -35,6 +34,7 @@ private:
     InputManager *  m_pInputManager;
 
     float           m_fCameraSpeed;
+    float           m_fCameraZoom;
 };
 
 #endif // CAMERAMANAGER_H

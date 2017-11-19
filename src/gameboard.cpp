@@ -22,6 +22,12 @@ GameBoard::GameBoard(int width, int height, RenderWindow * pWindow)
         tilePos.y += TILE_HEIGHT;
         tilePos.x = 0.0f;
     }
+
+    m_blackBackgroundTexture.loadFromFile("../resources/fond_noir.png");
+    m_blackBackgroundSprite = sf::Sprite(m_blackBackgroundTexture);
+    m_blackBackgroundSprite.setPosition(-500.0f, -500.0f);
+    m_blackBackgroundSprite.scale(1000.0f, 1000.0f);
+    g_drawManager.SetBackground(&m_blackBackgroundSprite);
 }
 
 void GameBoard::Update(float dt)

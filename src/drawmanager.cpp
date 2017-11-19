@@ -4,9 +4,14 @@ DrawManager::DrawManager()
 {
 }
 
-void DrawManager::SetWindow(sf::RenderWindow * pWindow)
+void DrawManager::Initialize(sf::RenderWindow * pWindow)
 {
     m_pWindow = pWindow;
+}
+
+void DrawManager::SetBackground(sf::Sprite * pSprite)
+{
+    m_pBlackBackground = pSprite;
 }
 
 void DrawManager::AddTileSprite(sf::Sprite * pSprite)
@@ -22,6 +27,8 @@ void DrawManager::AddBuildingSprite(sf::Sprite * pSprite)
 void DrawManager::Draw(void)
 {
     // We can draw all element types one by one since we don't have sprite superposition (robot behind building)
+
+    m_pWindow->draw(*m_pBlackBackground);
 
     DrawTiles();
     DrawBuildings();

@@ -39,7 +39,6 @@ sf::Vector3f IsometricToCartesian3(sf::Vector3f isoPos);
 /// \class IInputEvents                         ///
 /// \brief Interface pour les entrées souris    ///
 ///                                             ///
-
 class IInputEvents
 {
     virtual void    OnMouseRightPressed     (int x, int y) = 0;

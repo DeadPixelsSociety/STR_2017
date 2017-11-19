@@ -15,6 +15,8 @@ void InputManager::Initialize(GameBoard * pGameBoard)
     m_bCameraDown = false;
     m_bCameraTop = false;
 
+    m_iCameraZoom = 0;
+
     m_pGameBoard = pGameBoard;
 }
 
@@ -148,6 +150,15 @@ bool InputManager::Update(Event & event)
             }
             break;
 
+            case Event::MouseWheelScrolled:
+            {
+                if (event.mouseWheelScroll.wheel == sf::Mouse::VerticalWheel)
+                {
+                    m_iCameraZoom = (int)event.mouseWheelScroll.delta;
+                }
+            }
+            break;
+
             default:
             {
             }
@@ -192,6 +203,13 @@ bool InputManager::IsCameraTop(void)
 bool InputManager::IsCameraDown(void)
 {
     return(m_bCameraDown);
+}
+
+int InputManager::GetCameraZoom(void)
+{
+    int tmpZoom = m_iCameraZoom;
+    m_iCameraZoom = 0;
+    return(tmpZoom);
 }
 
 ////////////////////////////////////////////

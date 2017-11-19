@@ -1,4 +1,3 @@
-
 ///                                             ///
 /// \file tile.cpp                              ///
 /// \brief Implémentation de la classe Tile     ///
@@ -8,6 +7,10 @@
 
 using namespace sf;
 
+///
+/// \brief Constructeur
+/// \param Position cartesian de la tile
+///
 Tile::Tile(Vector2f pos)
 : m_cartesianPos(pos)
 {
@@ -24,7 +27,6 @@ Tile::Tile(Vector2f pos)
 /// \brief Règle la position de la case
 /// \param pos La position en coordonnées isométrique
 ///
-
 void Tile::SetPos(Vector2f pos)
 {
     m_pos = pos;
@@ -34,7 +36,6 @@ void Tile::SetPos(Vector2f pos)
 /// \brief Renvoi la position de la case
 /// \return La position en coordonnées isométrique
 ///
-
 Vector2f Tile::GetPos(void)
 {
     return(m_pos);
@@ -44,7 +45,6 @@ Vector2f Tile::GetPos(void)
 /// \brief Renvoi la position de la case en coordonnées cartésiennes
 /// \return La position en coordonnées cartésiennes
 ///
-
 Vector2f Tile::GetCartesianPos(void)
 {
     return(m_cartesianPos);
@@ -54,7 +54,6 @@ Vector2f Tile::GetCartesianPos(void)
 /// \brief Renvoi le sprite de la case
 /// \return Le sprite
 ///
-
 Sprite Tile::GetSprite(void)
 {
     return(m_sprite);

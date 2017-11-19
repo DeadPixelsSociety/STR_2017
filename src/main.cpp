@@ -12,7 +12,6 @@ int main()
     sf::RenderWindow window;
 
     window.create(sf::VideoMode(800, 600), "STR_2017");
-    g_drawManager.SetWindow(&window);
     window.setKeyRepeatEnabled(false); // OnKeyPressed only
 
     sf::View camera;
@@ -20,11 +19,12 @@ int main()
     camera.setCenter(0.0f, 0.0f);
     window.setView(camera);
 
-    GameBoard * pGameBoard = new GameBoard(5, 5, &window);
+    GameBoard * pGameBoard = new GameBoard(10, 10, &window);
 
     InputManager * pInputs = new InputManager();
     pInputs->Initialize(pGameBoard);
 
+    g_drawManager.Initialize(&window);
     g_cameraManager.Initialize(&camera, pInputs, 10.0f);
 
     sf::Clock clock;

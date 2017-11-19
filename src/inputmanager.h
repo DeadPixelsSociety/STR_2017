@@ -20,6 +20,8 @@ public:
     bool    IsCameraTop     (void);
     bool    IsCameraDown    (void);
 
+    int     GetCameraZoom   (void);
+
 private:
 
     bool            IsInGameBoard           (int x, int y);
@@ -40,6 +42,8 @@ private:
     bool            m_bCameraRight;
     bool            m_bCameraDown;
     bool            m_bCameraTop;
+
+    int             m_iCameraZoom;
 
     GameBoard *     m_pGameBoard;
     // GameGUI *    m_pGameGUI <- TODO

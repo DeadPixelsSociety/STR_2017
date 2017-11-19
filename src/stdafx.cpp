@@ -1,4 +1,3 @@
-
 ///                                                 ///
 /// \file stdafx.cpp                                ///
 /// \brief Implémentations des fonctions usuelles   ///
@@ -13,7 +12,6 @@ using namespace sf;
 /// \brief Transforme une coordonnée 2d cartésienne en coordonnée 2d isométrique
 /// \return Coordonnée 2d isométrique
 ///
-
 Vector2f CartesianToIsometric2(Vector2f cartPos)
 {
     Vector2f isometricPos;
@@ -27,7 +25,6 @@ Vector2f CartesianToIsometric2(Vector2f cartPos)
 /// \brief Transforme une coordonnée 3d cartésienne en coordonnée 3d isométrique
 /// \return Coordonnée 3d isométrique
 ///
-
 Vector3f CartesianToIsometric3(Vector3f cartPos)
 {
     Vector3f isometricPos;
@@ -42,7 +39,6 @@ Vector3f CartesianToIsometric3(Vector3f cartPos)
 /// \brief Transforme une coordonnée 2d isométrique en coordonnée 2d cartésienne
 /// \return Coordonnée 2d cartésienne
 ///
-
 Vector2f IsometricToCartesian2(Vector2f isoPos)
 {
     Vector2f cartesianPos;
@@ -56,7 +52,6 @@ Vector2f IsometricToCartesian2(Vector2f isoPos)
 /// \brief Transforme une coordonnée 3d isométrique en coordonnée 3d cartésienne
 /// \return Coordonnée 3d cartésienne
 ///
-
 Vector3f IsometricToCartesian3(Vector3f isoPos)
 {
     Vector3f cartesianPos;

@@ -8,8 +8,9 @@ class DrawManager
 public:
     DrawManager();
 
-    void    SetWindow           (sf::RenderWindow * pWindow);
+    void    Initialize          (sf::RenderWindow * pWindow);
 
+    void    SetBackground       (sf::Sprite * pSprite);
     void    AddTileSprite       (sf::Sprite * pSprite);
     void    AddBuildingSprite   (sf::Sprite * pSprite);
     void    Draw                (void);
@@ -22,7 +23,10 @@ private:
     void    DrawGUI         (void);
 
 private:
-    sf::RenderWindow * m_pWindow;
+
+    sf::RenderWindow *  m_pWindow;
+
+    sf::Sprite *        m_pBlackBackground;
 
     std::vector<sf::Sprite *> m_aSpriteList;
     std::vector<sf::Sprite *> m_aBuildingList;

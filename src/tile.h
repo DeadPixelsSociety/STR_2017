@@ -19,7 +19,6 @@
 /// Possède une texture ainsi qu'un sprite.                         ///
 /// Sa position peut être obtenue de façon standard ou cartésienne. ///
 ///                                                                 ///
-
 class Tile
 {
 public:

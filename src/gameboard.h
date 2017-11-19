@@ -26,10 +26,13 @@ public:
 
 private:
 
-    sf::RenderWindow * m_pWindow;
+    sf::RenderWindow *  m_pWindow;
 
-    int m_iWidth;
-    int m_iHeight;
+    sf::Texture         m_blackBackgroundTexture;
+    sf::Sprite          m_blackBackgroundSprite;
+
+    int                 m_iWidth;
+    int                 m_iHeight;
     std::vector<std::vector<Tile *>> m_aGameBoard;
 };
 
