@@ -5,7 +5,7 @@
 
 class Tile;
 
-class GameBoard: public IInputEvents
+class GameBoard final: public IInputEvents
 {
 public:
     GameBoard(int width, int height, sf::RenderWindow * pWindow);

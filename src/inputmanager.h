@@ -5,7 +5,7 @@
 
 class GameBoard;
 
-class InputManager: public IInputEvents
+class InputManager final: public IInputEvents
 {
 public:
     InputManager();
