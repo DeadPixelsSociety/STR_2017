@@ -1,7 +1,7 @@
-///                                                        ///
-/// \file cameramanager.cpp                                ///
-/// \brief Implémentation de la classe CameraManager       ///
-///                                                        ///
+///
+/// \file cameramanager.cpp
+/// \brief Implémentation de la classe CameraManager
+///
 
 #include "cameramanager.h"
 #include "inputmanager.h"

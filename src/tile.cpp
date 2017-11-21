@@ -1,7 +1,7 @@
-///                                             ///
-/// \file tile.cpp                              ///
-/// \brief Implémentation de la classe Tile     ///
-///                                             ///
+///
+/// \file tile.cpp
+/// \brief Implémentation de la classe Tile
+///
 
 #include "tile.h"
 

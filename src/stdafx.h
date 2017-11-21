@@ -1,10 +1,10 @@
 #ifndef STDAFX_H
 #define STDAFX_H
 
-///                                                                                     ///
-/// \file stdafx.h                                                                      ///
-/// \brief Définition des fonctions usuelles et déclaration de la classe IInputEvents   ///
-///                                                                                     ///
+///
+/// \file stdafx.h
+/// \brief Définition des fonctions usuelles et déclaration de la classe IInputEvents
+///
 
 //
 // Common includes
@@ -35,10 +35,10 @@ sf::Vector3f IsometricToCartesian3(sf::Vector3f isoPos);
 //
 // Common Interfaces
 
-///                                             ///
-/// \class IInputEvents                         ///
-/// \brief Interface pour les entrées souris    ///
-///                                             ///
+///
+/// \class IInputEvents
+/// \brief Interface pour les entrées souris
+///
 class IInputEvents
 {
     virtual void    OnMouseRightPressed     (int x, int y) = 0;

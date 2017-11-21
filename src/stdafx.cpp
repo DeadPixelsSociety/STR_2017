@@ -1,12 +1,11 @@
-///                                                 ///
-/// \file stdafx.cpp                                ///
-/// \brief Implémentations des fonctions usuelles   ///
-///                                                 ///
+///
+/// \file stdafx.cpp
+/// \brief Implémentations des fonctions usuelles
+///
 
 #include "stdafx.h"
 
 using namespace sf;
-
 
 ///
 /// \brief Transforme une coordonnée 2d cartésienne en coordonnée 2d isométrique

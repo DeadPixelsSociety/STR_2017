@@ -1,5 +1,10 @@
 #include "stdafx.h"
 #include "gameboard.h"
+///
+/// \file main.cpp
+/// \brief main
+///
+
 #include "inputmanager.h"
 
 using namespace std;
@@ -7,6 +12,10 @@ using namespace std;
 DrawManager g_drawManager;
 CameraManager g_cameraManager;
 
+///
+/// \brief main
+/// \return
+///
 int main()
 {
     sf::RenderWindow window;

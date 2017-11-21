@@ -1,8 +1,17 @@
 #ifndef DRAWMANAGER_H
 #define DRAWMANAGER_H
 
+///
+/// \file drawmanager.h
+/// \brief Header de la classe DrawManager
+///
+
 #include <SFML/Graphics.hpp>
 
+///
+/// \class DrawManager
+/// \brief Gestion du rendu
+///
 class DrawManager
 {
 public:

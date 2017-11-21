@@ -1,12 +1,24 @@
+///
+/// \file inputmanager.cpp
+/// \brief Implémentation de la classe InputManager
+///
+
 #include "inputmanager.h"
 #include "gameboard.h"
 
 using namespace sf;
 
+///
+/// \brief Constructeur
+///
 InputManager::InputManager()
 {
 }
 
+///
+/// \briefInitialize
+/// \param GameBoard pour l'appel des mouse events
+///
 void InputManager::Initialize(GameBoard * pGameBoard)
 {
     m_bIsGamePaused = false;
@@ -20,6 +32,11 @@ void InputManager::Initialize(GameBoard * pGameBoard)
     m_pGameBoard = pGameBoard;
 }
 
+///
+/// \brief Update des inputs
+/// \param sf::Event
+/// \return vrai si l'event concernait les inputs
+///
 bool InputManager::Update(Event & event)
 {
     bool isInputEvent = false;
@@ -180,31 +197,55 @@ bool InputManager::Update(Event & event)
     return(isInputEvent);
 }
 
+///
+/// \brief InputManager::IsGamePaused
+/// \return
+///
 bool InputManager::IsGamePaused(void)
 {
     return(m_bIsGamePaused);
 }
 
+///
+/// \brief InputManager::IsCameraLeft
+/// \return
+///
 bool InputManager::IsCameraLeft(void)
 {
     return(m_bCameraLeft);
 }
 
+///
+/// \brief InputManager::IsCameraRight
+/// \return
+///
 bool InputManager::IsCameraRight(void)
 {
     return(m_bCameraRight);
 }
 
+///
+/// \brief InputManager::IsCameraTop
+/// \return
+///
 bool InputManager::IsCameraTop(void)
 {
     return(m_bCameraTop);
 }
 
+///
+/// \brief InputManager::IsCameraDown
+/// \return
+///
 bool InputManager::IsCameraDown(void)
 {
     return(m_bCameraDown);
 }
 
+///
+/// \brief InputManager::GetCameraZoom
+/// \return
+///
 int InputManager::GetCameraZoom(void)
 {
     int tmpZoom = m_iCameraZoom;
@@ -212,10 +253,14 @@ int InputManager::GetCameraZoom(void)
     return(tmpZoom);
 }
 
-////////////////////////////////////////////
-//////////// MOUSE EVENTS ://///////////////
-////////////////////////////////////////////
+//-////////// MOUSE EVENTS :///////////////-//
 
+///
+/// \brief InputManager::IsInGameBoard
+/// \param x
+/// \param y
+/// \return
+///
 bool InputManager::IsInGameBoard(int x, int y)
 {
    // Check if is in game board or in GUI and call correct method (use fix % of place used by GUI ?)
@@ -226,7 +271,11 @@ bool InputManager::IsInGameBoard(int x, int y)
     return(true);
 }
 
-
+///
+/// \brief InputManager::OnMouseRightPressed
+/// \param x
+/// \param y
+///
 void InputManager::OnMouseRightPressed(int x, int y)
 {
     if(IsInGameBoard(x, y))
@@ -235,6 +284,11 @@ void InputManager::OnMouseRightPressed(int x, int y)
     }
 }
 
+///
+/// \brief InputManager::OnMouseRightReleased
+/// \param x
+/// \param y
+///
 void InputManager::OnMouseRightReleased(int x, int y)
 {
     if(IsInGameBoard(x, y))
@@ -243,6 +297,11 @@ void InputManager::OnMouseRightReleased(int x, int y)
     }
 }
 
+///
+/// \brief InputManager::OnMouseLeftPressed
+/// \param x
+/// \param y
+///
 void InputManager::OnMouseLeftPressed(int x, int y)
 {
     if(IsInGameBoard(x, y))
@@ -251,6 +310,11 @@ void InputManager::OnMouseLeftPressed(int x, int y)
     }
 }
 
+///
+/// \brief InputManager::OnMouseLeftReleased
+/// \param x
+/// \param y
+///
 void InputManager::OnMouseLeftReleased(int x, int y)
 {
     if(IsInGameBoard(x, y))
@@ -259,6 +323,11 @@ void InputManager::OnMouseLeftReleased(int x, int y)
     }
 }
 
+///
+/// \brief InputManager::OnMouseMoved
+/// \param x
+/// \param y
+///
 void InputManager::OnMouseMoved(int x, int y)
 {
     if(IsInGameBoard(x, y))

@@ -1,9 +1,20 @@
+///
+/// \file gameboard.cpp
+/// \brief Implémentation de la classe GameBoard
+///
+
 #include "gameboard.h"
 #include "tile.h"
 
 using namespace std;
 using namespace sf;
 
+///
+/// \brief Constructeur
+/// \param Width du plateau
+/// \param Height du plateau
+/// \param Render Window
+///
 GameBoard::GameBoard(int width, int height, RenderWindow * pWindow)
 : m_iWidth(width)
 , m_iHeight(height)
@@ -30,25 +41,42 @@ GameBoard::GameBoard(int width, int height, RenderWindow * pWindow)
     g_drawManager.SetBackground(&m_blackBackgroundSprite);
 }
 
+///
+/// \brief Update du plateau
+/// \param Delta time
+///
 void GameBoard::Update(float dt)
 {
     // Update all elements related to game board
 }
 
-////////////////////////////////////////////
-//////////// MOUSE EVENTS ://///////////////
-////////////////////////////////////////////
+//-////////// MOUSE EVENTS :///////////////-//
 
+///
+/// \brief GameBoard::OnMouseRightPressed
+/// \param x
+/// \param y
+///
 void GameBoard::OnMouseRightPressed(int x, int y)
 {
 
 }
 
+///
+/// \brief GameBoard::OnMouseRightReleased
+/// \param x
+/// \param y
+///
 void GameBoard::OnMouseRightReleased(int x, int y)
 {
     // give order to selected robots
 }
 
+///
+/// \brief GameBoard::OnMouseLeftPressed
+/// \param x
+/// \param y
+///
 void GameBoard::OnMouseLeftPressed(int x, int y)
 {
     // begin selection area
@@ -56,11 +84,21 @@ void GameBoard::OnMouseLeftPressed(int x, int y)
     printf("%f, %f\n", map.x, map.y);
 }
 
+///
+/// \brief GameBoard::OnMouseLeftReleased
+/// \param x
+/// \param y
+///
 void GameBoard::OnMouseLeftReleased(int x, int y)
 {
     // end selection area
 }
 
+///
+/// \brief GameBoard::OnMouseMoved
+/// \param x
+/// \param y
+///
 void GameBoard::OnMouseMoved(int x, int y)
 {
     // continue selection area

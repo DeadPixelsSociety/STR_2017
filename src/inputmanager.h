@@ -1,10 +1,19 @@
 #ifndef INPUTMANAGER_H
 #define INPUTMANAGER_H
 
+///
+/// \file inputmanager.h
+/// \brief Header de la classe InputManager
+///
+
 #include "stdafx.h"
 
 class GameBoard;
 
+///
+/// \class InputManager
+/// \brief Gestion des inputs
+///
 class InputManager final: public IInputEvents
 {
 public:

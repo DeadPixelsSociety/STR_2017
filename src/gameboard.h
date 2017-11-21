@@ -1,10 +1,19 @@
 #ifndef GAMEBOARD_H
 #define GAMEBOARD_H
 
+///
+/// \file gameboard.h
+/// \brief Header de la classe GameBoard
+///
+
 #include "stdafx.h"
 
 class Tile;
 
+///
+/// \class GameBoard
+/// \brief Gestion du plateau de jeu
+///
 class GameBoard final: public IInputEvents
 {
 public:
