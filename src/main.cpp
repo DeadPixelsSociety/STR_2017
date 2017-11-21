@@ -17,6 +17,7 @@ int main()
     sf::View camera;
     camera.setSize(1920, 1080);
     camera.setCenter(0.0f, 0.0f);
+    camera.setViewport(sf::FloatRect(0.0f, 0.05f, 1.0f, 0.75f));
     window.setView(camera);
 
     GameBoard * pGameBoard = new GameBoard(10, 10, &window);

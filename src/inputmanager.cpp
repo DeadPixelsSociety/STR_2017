@@ -266,4 +266,3 @@ void InputManager::OnMouseMoved(int x, int y)
         m_pGameBoard->OnMouseMoved(x, y);
     }
 }
-
