@@ -15,10 +15,10 @@ Tile::Tile(Vector2f pos)
 : m_cartesianPos(pos)
 {
     m_pos = CartesianToIsometric2(pos);
-    m_texture.loadFromFile("../resources/tile.png");
+    m_texture.loadFromFile("../resources/rock.png");
     m_sprite = Sprite(m_texture);
     m_sprite.setPosition(m_pos);
-    m_sprite.setOrigin(TILE_WIDTH , TILE_HEIGHT / 2); // default origin 0,0 is left top corner
+    m_sprite.setOrigin(TILE_WIDTH / 2 , TILE_HEIGHT / 2); // default origin 0,0 is left top corner
     g_drawManager.AddTileSprite(&m_sprite);
     printf("%f, %f / %f, %f\n", pos.x, pos.y, m_pos.x, m_pos.y);
 }
@@ -54,7 +54,7 @@ Vector2f Tile::GetCartesianPos(void)
 /// \brief Renvoi le sprite de la case
 /// \return Le sprite
 ///
-Sprite Tile::GetSprite(void)
+Sprite * Tile::GetSprite(void)
 {
-    return(m_sprite);
+    return(&m_sprite);
 }

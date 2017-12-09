@@ -29,7 +29,7 @@ int main()
     camera.setViewport(sf::FloatRect(0.0f, 0.05f, 1.0f, 0.75f));
     window.setView(camera);
 
-    GameBoard * pGameBoard = new GameBoard(10, 10, &window);
+    GameBoard * pGameBoard = new GameBoard(3, 3, &window);
 
     InputManager * pInputs = new InputManager();
     pInputs->Initialize(pGameBoard);
@@ -68,7 +68,7 @@ int main()
 
             g_drawManager.Draw();
 
-            //pGameBoard->DbgDisplayGrid(true);
+            //pGameBoard->DbgDisplayGrid(false);
             pGameBoard->DbgDrawCenter();
 
             window.display();

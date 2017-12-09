@@ -42,7 +42,7 @@ Vector2f IsometricToCartesian2(Vector2f isoPos)
 {
     Vector2f cartesianPos;
     cartesianPos.x = (2 * isoPos.y + isoPos.x) / 2;
-    cartesianPos.y = (2 * isoPos.y + isoPos.x) / 2;
+    cartesianPos.y = (2 * isoPos.y - isoPos.x) / 2;
 
     return(cartesianPos);
 }
@@ -55,7 +55,7 @@ Vector3f IsometricToCartesian3(Vector3f isoPos)
 {
     Vector3f cartesianPos;
     cartesianPos.x = (2 * isoPos.y + isoPos.x) / 2;
-    cartesianPos.y = (2 * isoPos.y + isoPos.x) / 2;
+    cartesianPos.y = (2 * isoPos.y - isoPos.x) / 2;
     cartesianPos.z = isoPos.z;
 
     return(cartesianPos);

@@ -8,8 +8,8 @@
 
 #include "stdafx.h"
 
-#define TILE_WIDTH 32
-#define TILE_HEIGHT 32
+#define TILE_WIDTH 128
+#define TILE_HEIGHT 64
 
 ///
 /// \class Tile
@@ -28,7 +28,7 @@ public:
     sf::Vector2f    GetPos              (void);
     sf::Vector2f    GetCartesianPos     (void);
 
-    sf::Sprite      GetSprite           (void);
+    sf::Sprite *    GetSprite           (void);
 
 private:
 

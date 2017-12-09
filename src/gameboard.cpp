@@ -21,13 +21,13 @@ GameBoard::GameBoard(int width, int height, RenderWindow * pWindow)
 , m_pWindow(pWindow)
 {
     Vector2f tilePos(0.0f, 0.0f);
-    for (int i = 0; i < m_iWidth; ++i)
+    for (int i = 0; i < m_iHeight; ++i)
     {
         vector<Tile *> raw;
-        for (int j = 0; j < m_iHeight; ++j)
+        for (int j = 0; j < m_iWidth; ++j)
         {
             raw.push_back(new Tile(tilePos));
-            tilePos.x += TILE_WIDTH;
+            tilePos.x += TILE_WIDTH / 2; // ratio between tile width and height
         }
         m_aGameBoard.push_back(raw);
         tilePos.y += TILE_HEIGHT;
@@ -37,7 +37,7 @@ GameBoard::GameBoard(int width, int height, RenderWindow * pWindow)
     m_blackBackgroundTexture.loadFromFile("../resources/fond_noir.png");
     m_blackBackgroundSprite = sf::Sprite(m_blackBackgroundTexture);
     m_blackBackgroundSprite.setPosition(-500.0f, -500.0f);
-    m_blackBackgroundSprite.scale(1000.0f, 1000.0f);
+    m_blackBackgroundSprite.scale(10000.0f, 10000.0f);
     g_drawManager.SetBackground(&m_blackBackgroundSprite);
 }
 
@@ -50,7 +50,7 @@ void GameBoard::Update(float dt)
     // Update all elements related to game board
 }
 
-//-////////// MOUSE EVENTS :///////////////-//
+//-////////// MOUSE EVENTS //////////////-//
 
 ///
 /// \brief GameBoard::OnMouseRightPressed
@@ -59,7 +59,6 @@ void GameBoard::Update(float dt)
 ///
 void GameBoard::OnMouseRightPressed(int x, int y)
 {
-
 }
 
 ///
@@ -82,6 +81,18 @@ void GameBoard::OnMouseLeftPressed(int x, int y)
     // begin selection area
     Vector2f map = m_pWindow->mapPixelToCoords(Vector2i(x,y), *g_cameraManager.GetCamera());
     printf("%f, %f\n", map.x, map.y);
+
+    Vector2f board = IsometricToCartesian2(map);
+    printf("%f, %f\n", board.x, board.y);
+
+    Vector2f tempPt;
+    x = round(board.x / (TILE_WIDTH/2));
+    y = round(board.y / TILE_HEIGHT);
+    printf("%d, %d\n\n", x, y);
+    if (x >= 0 && y >= 0 && x < m_iWidth && y < m_iHeight)
+    {
+        m_aGameBoard[y][x]->GetSprite()->setRotation(m_aGameBoard[y][x]->GetSprite()->getRotation() + 10.0f);
+    }
 }
 
 ///
@@ -160,7 +171,7 @@ void GameBoard::DbgDisplayGrid(bool cartesian /* = true */)
 void GameBoard::DbgDrawCenter(void)
 {
     sf::RectangleShape tileShape = sf::RectangleShape(sf::Vector2f(5, 5));
-    tileShape.setPosition(0,0);
+    tileShape.setPosition(0, 0);
     tileShape.setOrigin(2.5, 2.5);
     m_pWindow->draw(tileShape);
 }
