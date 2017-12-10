@@ -40,6 +40,9 @@ private:
     sf::Texture         m_blackBackgroundTexture;
     sf::Sprite          m_blackBackgroundSprite;
 
+    sf::RectangleShape  m_selectionArea;
+    bool                m_bSelectionArea;
+
     int                 m_iWidth;
     int                 m_iHeight;
     std::vector<std::vector<Tile *>> m_aGameBoard;

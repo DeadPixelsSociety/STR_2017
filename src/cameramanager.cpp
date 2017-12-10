@@ -10,6 +10,8 @@
 /// \brief Constructeur
 ///
 CameraManager::CameraManager()
+: m_pCamera(nullptr)
+, m_pInputManager(nullptr)
 {
 }
 

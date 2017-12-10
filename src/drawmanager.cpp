@@ -9,6 +9,9 @@
 /// \brief Constructeur
 ///
 DrawManager::DrawManager()
+: m_pWindow(nullptr)
+, m_pBlackBackground(nullptr)
+, m_pSelectionArea(nullptr)
 {
 }
 
@@ -28,6 +31,15 @@ void DrawManager::Initialize(sf::RenderWindow * pWindow)
 void DrawManager::SetBackground(sf::Sprite * pSprite)
 {
     m_pBlackBackground = pSprite;
+}
+
+///
+/// \brief Set de la zone de selection
+/// \param RectangleShape de la zone
+///
+void DrawManager::SetSelectionArea(sf::RectangleShape * pArea)
+{
+    m_pSelectionArea = pArea;
 }
 
 ///
@@ -60,6 +72,12 @@ void DrawManager::Draw(void)
     DrawTiles();
     DrawBuildings();
     DrawRobots();
+
+    if (nullptr != m_pSelectionArea)
+    {
+        m_pWindow->draw(*m_pSelectionArea);
+    }
+
     DrawGUI();
 }
 

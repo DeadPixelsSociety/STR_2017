@@ -171,6 +171,7 @@ bool InputManager::Update(Event & event)
             {
                 if (event.mouseWheelScroll.wheel == sf::Mouse::VerticalWheel)
                 {
+                    //TODO add max & min
                     m_iCameraZoom = (int)event.mouseWheelScroll.delta;
                 }
             }

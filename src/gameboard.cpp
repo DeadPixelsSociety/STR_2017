@@ -19,6 +19,8 @@ GameBoard::GameBoard(int width, int height, RenderWindow * pWindow)
 : m_iWidth(width)
 , m_iHeight(height)
 , m_pWindow(pWindow)
+, m_selectionArea(RectangleShape())
+, m_bSelectionArea(false)
 {
     Vector2f tilePos(0.0f, 0.0f);
     for (int i = 0; i < m_iHeight; ++i)
@@ -36,7 +38,7 @@ GameBoard::GameBoard(int width, int height, RenderWindow * pWindow)
 
     m_blackBackgroundTexture.loadFromFile("../resources/fond_noir.png");
     m_blackBackgroundSprite = sf::Sprite(m_blackBackgroundTexture);
-    m_blackBackgroundSprite.setPosition(-500.0f, -500.0f);
+    m_blackBackgroundSprite.setOrigin(32.0f, 32.0f);
     m_blackBackgroundSprite.scale(10000.0f, 10000.0f);
     g_drawManager.SetBackground(&m_blackBackgroundSprite);
 }
@@ -78,16 +80,28 @@ void GameBoard::OnMouseRightReleased(int x, int y)
 ///
 void GameBoard::OnMouseLeftPressed(int x, int y)
 {
-    // begin selection area
-    Vector2f map = m_pWindow->mapPixelToCoords(Vector2i(x,y), *g_cameraManager.GetCamera());
-    printf("%f, %f\n", map.x, map.y);
+    // Board iso coord
+    Vector2f boardISo = m_pWindow->mapPixelToCoords(Vector2i(x,y), *g_cameraManager.GetCamera());
+    printf("%f, %f\n", boardISo.x, boardISo.y);
 
-    Vector2f board = IsometricToCartesian2(map);
-    printf("%f, %f\n", board.x, board.y);
+    // Board cartesian coord
+    Vector2f boardCarte = IsometricToCartesian2(boardISo);
+    printf("%f, %f\n", boardCarte.x, boardCarte.y);
 
+    // Trigger selection area
+    m_selectionArea.setPosition(boardISo);
+    m_selectionArea.setSize(Vector2f(0.0f, 0.0f));
+    m_selectionArea.setOutlineThickness(3);
+    m_selectionArea.setFillColor(Color::Transparent);
+    g_drawManager.SetSelectionArea(&m_selectionArea);
+    m_bSelectionArea = true;
+
+
+
+    // DBG TEST - Get clicked tile
     Vector2f tempPt;
-    x = round(board.x / (TILE_WIDTH/2));
-    y = round(board.y / TILE_HEIGHT);
+    x = round(boardCarte.x / (TILE_WIDTH/2));
+    y = round(boardCarte.y / TILE_HEIGHT);
     printf("%d, %d\n\n", x, y);
     if (x >= 0 && y >= 0 && x < m_iWidth && y < m_iHeight)
     {
@@ -102,7 +116,11 @@ void GameBoard::OnMouseLeftPressed(int x, int y)
 ///
 void GameBoard::OnMouseLeftReleased(int x, int y)
 {
-    // end selection area
+    // Trigger selection area
+    // Compute carte board area with origin & size.
+    // Then check what is on it.
+    m_bSelectionArea = false;
+    g_drawManager.SetSelectionArea(nullptr);
 }
 
 ///
@@ -112,7 +130,17 @@ void GameBoard::OnMouseLeftReleased(int x, int y)
 ///
 void GameBoard::OnMouseMoved(int x, int y)
 {
-    // continue selection area
+    // Board iso coord
+    Vector2f boardISo = m_pWindow->mapPixelToCoords(Vector2i(x,y), *g_cameraManager.GetCamera());
+
+    // Update selection area
+    if (m_bSelectionArea)
+    {
+        Vector2f pos = m_selectionArea.getPosition();
+        Vector2f size(boardISo.x - pos.x, boardISo.y - pos.y);
+
+        m_selectionArea.setSize(size);
+    }
 }
 
 
