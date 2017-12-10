@@ -22,7 +22,7 @@
 class Tile
 {
 public:
-    Tile(sf::Vector2f pos);
+    explicit Tile(sf::Vector2f pos);
 
     void            SetPos              (sf::Vector2f pos);
     sf::Vector2f    GetPos              (void);

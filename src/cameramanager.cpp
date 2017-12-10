@@ -12,6 +12,8 @@
 CameraManager::CameraManager()
 : m_pCamera(nullptr)
 , m_pInputManager(nullptr)
+, m_fCameraSpeed(0.0f)
+, m_fCameraZoom(1.0f)
 {
 }
 
@@ -26,8 +28,6 @@ void CameraManager::Initialize(sf::View *pCamera, InputManager *pInputManager, f
     m_pCamera = pCamera;
     m_pInputManager = pInputManager;
     m_fCameraSpeed = cameraSpeed;
-
-    m_fCameraZoom = 1.0f;
 }
 
 ///

@@ -12,6 +12,13 @@ using namespace sf;
 /// \brief Constructeur
 ///
 InputManager::InputManager()
+: m_pGameBoard(nullptr)
+, m_bIsGamePaused(false)
+, m_bCameraLeft(false)
+, m_bCameraRight(false)
+, m_bCameraDown(false)
+, m_bCameraTop(false)
+, m_iCameraZoom(0)
 {
 }
 
