@@ -50,4 +50,13 @@ class IInputEvents
     virtual void    OnMouseMoved            (int x, int y) = 0;
 };
 
+enum class RobotType
+{
+	MINER,
+	BUILDER,
+	DEFENDER,
+	RARE_ORE_TRANSPORTER,
+	SPECIAL
+};
+
 #endif // STDAFX_H
