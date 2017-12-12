@@ -1,63 +1,62 @@
 #include "robot.h"
 
-Robot::Robot(GameBoard &gameboard, float x, float y) :
-	m_fx(x),
-	m_fy(y),
-	m_fxTarget(x),
-	m_fyTarget(y),
-	m_fDamage(0),
-	m_fEnergy(100),
-	m_pBoard(&gameboard)
+Robot::Robot(GameBoard * pGameboard, float x, float y)
+: m_fx(x)
+, m_fy(y)
+, m_fxTarget(x)
+, m_fyTarget(y)
+, m_fDamage(0)
+, m_fEnergy(100)
+, m_pBoard(pGameboard)
+, m_iCurrentSpriteId(0)
 {
-
 }
 
-Robot::~Robot()
+Robot::~Robot(void)
 {
-
 }
 
-void Robot::select()
+void Robot::Select(void)
 {
 	m_bSelected = true;
 }
 
-void Robot::deselect()
+void Robot::Deselect(void)
 {
 	m_bSelected = false;
 }
 
-void Robot::update()
+void Robot::Update(float dt)
 {
-
+    // Update animation
 }
 
-float Robot::getFx() const
+float Robot::GetFx(void) const
 {
 	return m_fx;
 }
 
-float Robot::getFy() const
+float Robot::GetFy(void) const
 {
 	return m_fy;
 }
 
-float Robot::getFDamage() const
+float Robot::GetFDamage(void) const
 {
 	return m_fDamage;
 }
 
-float Robot::getFEnergy() const
+float Robot::GetFEnergy(void) const
 {
 	return m_fEnergy;
 }
 
-bool Robot::getBSelected() const
+bool Robot::GetBSelected(void) const
 {
 	return m_bSelected;
 }
 
-RobotType Robot::getType() const
+Robot::RobotType Robot::GetType(void) const
 {
 	return m_type;
 }

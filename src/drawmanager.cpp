@@ -5,6 +5,8 @@
 
 #include "drawmanager.h"
 
+using namespace sf;
+
 ///
 /// \brief Constructeur
 ///
@@ -19,7 +21,7 @@ DrawManager::DrawManager()
 /// \brief Initialize
 /// \param Render Window
 ///
-void DrawManager::Initialize(sf::RenderWindow * pWindow)
+void DrawManager::Initialize(RenderWindow * pWindow)
 {
     m_pWindow = pWindow;
 }
@@ -28,7 +30,7 @@ void DrawManager::Initialize(sf::RenderWindow * pWindow)
 /// \brief Set du background de la map
 /// \param Sprite du background
 ///
-void DrawManager::SetBackground(sf::Sprite * pSprite)
+void DrawManager::SetBackground(Sprite * pSprite)
 {
     m_pBlackBackground = pSprite;
 }
@@ -37,27 +39,36 @@ void DrawManager::SetBackground(sf::Sprite * pSprite)
 /// \brief Set de la zone de selection
 /// \param RectangleShape de la zone
 ///
-void DrawManager::SetSelectionArea(sf::RectangleShape * pArea)
+void DrawManager::SetSelectionArea(RectangleShape * pArea)
 {
     m_pSelectionArea = pArea;
 }
 
 ///
-/// \brief Ajoute un sprite de tuile dans la liste
-/// \param Sprite de la tuile
+/// \brief Ajoute une tuile dans la liste
+/// \param DrawableObject
 ////
-void DrawManager::AddTileSprite(sf::Sprite * pSprite)
+void DrawManager::AddTileObject(DrawableObject * pTile)
 {
-    m_aSpriteList.push_back(pSprite);
+    m_aSpriteList.push_back(pTile);
 }
 
 ///
-/// \brief Ajoute un sprite de bâtiment dans la liste
-/// \param Sprite du bâtiment
+/// \brief Ajoute un bâtiment dans la liste
+/// \param DrawableObject
 ///
-void DrawManager::AddBuildingSprite(sf::Sprite * pSprite)
+void DrawManager::AddBuildingObject(DrawableObject * pBuilding)
 {
-    m_aBuildingList.push_back(pSprite);
+    m_aBuildingList.push_back(pBuilding);
+}
+
+///
+/// \brief Ajoute un robot dans la liste
+/// \param DrawableObject
+///
+void DrawManager::AddRobotObject(DrawableObject * pRobot)
+{
+    m_aRobotList.push_back(pRobot);
 }
 
 ///
@@ -89,7 +100,7 @@ void DrawManager::DrawTiles(void)
     size_t iTileCount = m_aSpriteList.size();
     for (size_t i = 0; i < iTileCount; ++i)
     {
-        m_pWindow->draw(*m_aSpriteList[i]);
+        m_aSpriteList[i]->draw(*m_pWindow, RenderStates::Default);
     }
 }
 
@@ -101,7 +112,7 @@ void DrawManager::DrawBuildings(void)
     size_t iBuildingCount = m_aBuildingList.size();
     for (size_t i = 0; i < iBuildingCount; ++i)
     {
-        m_pWindow->draw(*m_aBuildingList[i]);
+        m_aBuildingList[i]->draw(*m_pWindow, RenderStates::Default);
     }
 }
 
@@ -110,7 +121,11 @@ void DrawManager::DrawBuildings(void)
 ///
 void DrawManager::DrawRobots(void)
 {
-    // TODO
+    size_t iRobotCount = m_aRobotList.size();
+    for (size_t i = 0; i < iRobotCount; ++i)
+    {
+        m_aRobotList[i]->draw(*m_pWindow, RenderStates::Default);
+    }
 }
 
 ///

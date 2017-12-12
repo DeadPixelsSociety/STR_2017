@@ -16,10 +16,10 @@ Tile::Tile(Vector2f pos)
 {
     m_pos = CartesianToIsometric2(pos);
     m_texture.loadFromFile("../resources/rock.png");
-    m_sprite = Sprite(m_texture);
-    m_sprite.setPosition(m_pos);
-    m_sprite.setOrigin(TILE_WIDTH / 2 , TILE_HEIGHT / 2); // default origin 0,0 is left top corner
-    g_drawManager.AddTileSprite(&m_sprite);
+    m_drawableSprite = Sprite(m_texture);
+    m_drawableSprite.setPosition(m_pos);
+    m_drawableSprite.setOrigin(TILE_WIDTH / 2 , TILE_HEIGHT / 2); // default origin 0,0 is left top corner
+    g_drawManager.AddTileObject(this);
     printf("%f, %f / %f, %f\n", pos.x, pos.y, m_pos.x, m_pos.y);
 }
 
@@ -56,5 +56,5 @@ Vector2f Tile::GetCartesianPos(void)
 ///
 Sprite * Tile::GetSprite(void)
 {
-    return(&m_sprite);
+    return(&m_drawableSprite);
 }

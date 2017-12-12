@@ -8,6 +8,8 @@
 
 #include <SFML/Graphics.hpp>
 
+class DrawableObject;
+
 ///
 /// \class DrawManager
 /// \brief Gestion du rendu
@@ -24,8 +26,9 @@ public:
 
     void    IsSelectionArea     (void);
 
-    void    AddTileSprite       (sf::Sprite * pSprite);
-    void    AddBuildingSprite   (sf::Sprite * pSprite);
+    void    AddTileObject       (DrawableObject * pTile);
+    void    AddBuildingObject   (DrawableObject * pBuilding);
+    void    AddRobotObject      (DrawableObject * pRobot);
     void    Draw                (void);
 
 private:
@@ -42,10 +45,9 @@ private:
     sf::Sprite *            m_pBlackBackground;
     sf::RectangleShape *    m_pSelectionArea;
 
-    std::vector<sf::Sprite *>   m_aSpriteList;
-    std::vector<sf::Sprite *>   m_aBuildingList;
-
-    // robot: vector<Robots *> and draw each current sprites ?
+    std::vector<DrawableObject *>   m_aSpriteList;
+    std::vector<DrawableObject *>   m_aBuildingList;
+    std::vector<DrawableObject *>   m_aRobotList;
 
     // GUI: need to think about this
 };

@@ -19,10 +19,11 @@
 /// Possède une texture ainsi qu'un sprite.
 /// Sa position peut être obtenue de façon standard ou cartésienne.
 ///
-class Tile
+class Tile : public DrawableObject
 {
 public:
-    explicit Tile(sf::Vector2f pos);
+
+    explicit Tile (sf::Vector2f pos);
 
     void            SetPos              (sf::Vector2f pos);
     sf::Vector2f    GetPos              (void);
@@ -36,7 +37,6 @@ private:
     sf::Vector2f m_pos;          // Isometric coord
 
     sf::Texture  m_texture;
-    sf::Sprite   m_sprite;
 };
 
 #endif // TILE_H

@@ -7,25 +7,36 @@
 class Robot
 {
 public:
-				Robot(GameBoard& gameboard, float x, float y);
-	virtual		~Robot();
 
-	void		select(void);
-	void		deselect(void);
+    enum class RobotType
+    {
+        MINER,
+        BUILDER,
+        DEFENDER,
+        RARE_ORE_TRANSPORTER,
+        SPECIAL
+    };
 
-	void		update(void);
+                Robot           (GameBoard * pGameboard, float x, float y);
+    virtual		~Robot          (void);
 
-	RobotType	getType(void) const;
+    void		Select          (void);
+    void		Deselect        (void);
 
-	float		getFx(void) const;
-	float		getFy(void) const;
+    void		Update          (float dt);
 
-	float		getFDamage(void) const;
-	float		getFEnergy(void) const;
+    RobotType	GetType         (void) const;
 
-	bool		getBSelected(void) const;
+    float		GetFx           (void) const;
+    float		GetFy           (void) const;
+
+    float		GetFDamage      (void) const;
+    float		GetFEnergy      (void) const;
+
+    bool		GetBSelected    (void) const;
 
 private:
+
 	RobotType	m_type;
 
 	GameBoard *	m_pBoard;
@@ -40,6 +51,10 @@ private:
 	float		m_fEnergy;
 
 	bool		m_bSelected;
+
+    std::vector<sf::Sprite> m_aSpriteList; // Sprite list for animation
+    int m_iCurrentSpriteId;
+    // use m_drawableSprite as current sprite to draw
 };
 
 #endif // ROBOT_H

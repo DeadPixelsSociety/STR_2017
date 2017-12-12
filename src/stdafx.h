@@ -19,6 +19,7 @@
 // Game includes
 #include "drawmanager.h"
 #include "cameramanager.h"
+#include "drawableobject.h"
 
 //
 // Global definitions
@@ -48,15 +49,6 @@ class IInputEvents
     virtual void    OnMouseLeftReleased     (int x, int y) = 0;
 
     virtual void    OnMouseMoved            (int x, int y) = 0;
-};
-
-enum class RobotType
-{
-	MINER,
-	BUILDER,
-	DEFENDER,
-	RARE_ORE_TRANSPORTER,
-	SPECIAL
 };
 
 #endif // STDAFX_H
