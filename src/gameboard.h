@@ -17,9 +17,11 @@ class Tile;
 class GameBoard final: public IInputEvents
 {
 public:
-    GameBoard(int width, int height, sf::RenderWindow * pWindow);
+    explicit    GameBoard   (int width, int height, sf::RenderWindow * pWindow);
 
-    void    Update  (float dt);
+    void        Update      (float dt);
+
+    void        Initialize  (void);
 
     virtual void    OnMouseRightPressed     (int x, int y) override;
     virtual void    OnMouseRightReleased    (int x, int y) override;

@@ -4,7 +4,7 @@
 ///
 
 #include "inputmanager.h"
-#include "gameboard.h"
+#include "gamestate.h"
 
 using namespace sf;
 
@@ -12,13 +12,12 @@ using namespace sf;
 /// \brief Constructeur
 ///
 InputManager::InputManager()
-: m_pGameBoard(nullptr)
-, m_bIsGamePaused(false)
-, m_bCameraLeft(false)
+: m_bCameraLeft(false)
 , m_bCameraRight(false)
 , m_bCameraDown(false)
 , m_bCameraTop(false)
 , m_iCameraZoom(0)
+, m_pGameState(nullptr)
 {
 }
 
@@ -26,9 +25,8 @@ InputManager::InputManager()
 /// \briefInitialize
 /// \param GameBoard pour l'appel des mouse events
 ///
-void InputManager::Initialize(GameBoard * pGameBoard)
+void InputManager::Initialize(GameState * pGameState)
 {
-    m_bIsGamePaused = false;
     m_bCameraLeft = false;
     m_bCameraRight = false;
     m_bCameraDown = false;
@@ -36,7 +34,7 @@ void InputManager::Initialize(GameBoard * pGameBoard)
 
     m_iCameraZoom = 0;
 
-    m_pGameBoard = pGameBoard;
+    m_pGameState = pGameState;
 }
 
 ///
@@ -48,7 +46,7 @@ bool InputManager::Update(Event & event)
 {
     bool isInputEvent = false;
 
-    if (!m_bIsGamePaused)
+    if (!m_pGameState->IsPaused())
     {
         switch(event.type)
         {
@@ -126,7 +124,7 @@ bool InputManager::Update(Event & event)
 
                     case Keyboard::P:
                     {
-                       m_bIsGamePaused = true;
+                       m_pGameState->SetPause(true);
                     }
                     break;
 
@@ -193,9 +191,9 @@ bool InputManager::Update(Event & event)
     {
         if (Event::KeyReleased == event.type)
         {
-            if (Keyboard::isKeyPressed(Keyboard::P))
+            if (Keyboard::P == event.key.code)
             {
-                m_bIsGamePaused = false;
+               m_pGameState->SetPause(false);
             }
 
             isInputEvent= true;
@@ -203,15 +201,6 @@ bool InputManager::Update(Event & event)
     }
 
     return(isInputEvent);
-}
-
-///
-/// \brief InputManager::IsGamePaused
-/// \return
-///
-bool InputManager::IsGamePaused(void)
-{
-    return(m_bIsGamePaused);
 }
 
 ///
@@ -264,32 +253,13 @@ int InputManager::GetCameraZoom(void)
 //-////////// MOUSE EVENTS :///////////////-//
 
 ///
-/// \brief InputManager::IsInGameBoard
-/// \param x
-/// \param y
-/// \return
-///
-bool InputManager::IsInGameBoard(int x, int y)
-{
-   // Check if is in game board or in GUI and call correct method (use fix % of place used by GUI ?)
-
-    // if in gui
-    // return(false);
-
-    return(true);
-}
-
-///
 /// \brief InputManager::OnMouseRightPressed
 /// \param x
 /// \param y
 ///
 void InputManager::OnMouseRightPressed(int x, int y)
 {
-    if(IsInGameBoard(x, y))
-    {
-        m_pGameBoard->OnMouseRightPressed(x, y);
-    }
+    m_pGameState->OnMouseRightPressed(x, y);
 }
 
 ///
@@ -299,10 +269,7 @@ void InputManager::OnMouseRightPressed(int x, int y)
 ///
 void InputManager::OnMouseRightReleased(int x, int y)
 {
-    if(IsInGameBoard(x, y))
-    {
-        m_pGameBoard->OnMouseRightReleased(x, y);
-    }
+    m_pGameState->OnMouseRightReleased(x, y);
 }
 
 ///
@@ -312,10 +279,7 @@ void InputManager::OnMouseRightReleased(int x, int y)
 ///
 void InputManager::OnMouseLeftPressed(int x, int y)
 {
-    if(IsInGameBoard(x, y))
-    {
-        m_pGameBoard->OnMouseLeftPressed(x, y);
-    }
+    m_pGameState->OnMouseLeftPressed(x, y);
 }
 
 ///
@@ -325,10 +289,7 @@ void InputManager::OnMouseLeftPressed(int x, int y)
 ///
 void InputManager::OnMouseLeftReleased(int x, int y)
 {
-    if(IsInGameBoard(x, y))
-    {
-        m_pGameBoard->OnMouseLeftReleased(x, y);
-    }
+    m_pGameState->OnMouseLeftReleased(x, y);
 }
 
 ///
@@ -338,8 +299,5 @@ void InputManager::OnMouseLeftReleased(int x, int y)
 ///
 void InputManager::OnMouseMoved(int x, int y)
 {
-    if(IsInGameBoard(x, y))
-    {
-        m_pGameBoard->OnMouseMoved(x, y);
-    }
+    m_pGameState->OnMouseMoved(x, y);
 }

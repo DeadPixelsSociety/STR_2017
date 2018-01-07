@@ -8,7 +8,7 @@
 
 #include "stdafx.h"
 
-class GameBoard;
+class GameState;
 
 ///
 /// \class InputManager
@@ -19,10 +19,8 @@ class InputManager final: public IInputEvents
 public:
     InputManager();
 
-    void    Initialize      (GameBoard * pGameBoard);
+    void    Initialize      (GameState * pGameState);
     bool    Update          (sf::Event & event);
-
-    bool    IsGamePaused    (void);
 
     bool    IsCameraLeft    (void);
     bool    IsCameraRight   (void);
@@ -32,8 +30,6 @@ public:
     int     GetCameraZoom   (void);
 
 private:
-
-    bool            IsInGameBoard           (int x, int y);
 
     virtual void    OnMouseRightPressed     (int x, int y) override;
     virtual void    OnMouseRightReleased    (int x, int y) override;
@@ -45,8 +41,6 @@ private:
 
 private:
 
-    bool            m_bIsGamePaused;
-
     bool            m_bCameraLeft;
     bool            m_bCameraRight;
     bool            m_bCameraDown;
@@ -54,8 +48,7 @@ private:
 
     int             m_iCameraZoom;
 
-    GameBoard *     m_pGameBoard;
-    // GameGUI *    m_pGameGUI <- TODO
+    GameState *     m_pGameState;
 };
 
 #endif // INPUTMANAGER_H

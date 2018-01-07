@@ -36,7 +36,8 @@ SOURCES += main.cpp \
     inputmanager.cpp \
     cameramanager.cpp \
     robot.cpp \
-    drawableobject.cpp
+    drawableobject.cpp \
+    gamestate.cpp
 
 HEADERS += \
     gameboard.h \
@@ -46,4 +47,5 @@ HEADERS += \
     inputmanager.h \
     cameramanager.h \
     robot.h \
-    drawableobject.h
+    drawableobject.h \
+    gamestate.h

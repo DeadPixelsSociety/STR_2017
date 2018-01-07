@@ -1,13 +1,14 @@
 #include "robot.h"
 
 Robot::Robot(GameBoard * pGameboard, float x, float y)
-: m_fx(x)
+: m_type(RobotType::BUILDER)
+, m_pBoard(pGameboard)
+, m_fx(x)
 , m_fy(y)
 , m_fxTarget(x)
 , m_fyTarget(y)
 , m_fDamage(0)
 , m_fEnergy(100)
-, m_pBoard(pGameboard)
 , m_iCurrentSpriteId(0)
 {
 }

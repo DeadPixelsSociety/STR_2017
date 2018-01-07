@@ -16,11 +16,15 @@ using namespace sf;
 /// \param Render Window
 ///
 GameBoard::GameBoard(int width, int height, RenderWindow * pWindow)
-: m_iWidth(width)
-, m_iHeight(height)
-, m_pWindow(pWindow)
+: m_pWindow(pWindow)
 , m_selectionArea(RectangleShape())
 , m_bSelectionArea(false)
+, m_iWidth(width)
+, m_iHeight(height)
+{
+}
+
+void GameBoard::Initialize(void)
 {
     Vector2f tilePos(0.0f, 0.0f);
     for (int i = 0; i < m_iHeight; ++i)
