@@ -4,8 +4,11 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 DEFINES += SFML_STATIC
+DEFINES += QT_DEPRECATED_WARNINGS
 
-PRECOMPILED_HEADER += stdafx.H
+PRECOMPILED_HEADER += stdafx.h
+
+#message($$QMAKESPEC)
 
 ##SFML
 LIBS += -LC:/SFML-2.4.2/lib
@@ -13,12 +16,12 @@ LIBS += -LC:/SFML-2.4.2/lib
 #-Add essential Windows libs
 LIBS += -luser32 -ladvapi32
 
-#-Add sfml dependencies in order to user SFML_STATIC
-LIBS += -lfreetype -ljpeg -lopengl32 -lwinmm -lgdi32
-
 #-Add sfml lib
 CONFIG(release, debug|release): LIBS += -lsfml-graphics-s -lsfml-window-s -lsfml-system-s
 CONFIG(debug, debug|release): LIBS += -lsfml-graphics-s-d -lsfml-window-s-d -lsfml-system-s-d
+
+#-Add sfml dependencies in order to use SFML_STATIC
+LIBS += -lfreetype -ljpeg -lopengl32 -lwinmm -lgdi32
 
 #-Include sfml headers
 INCLUDEPATH += C:/SFML-2.4.2/include

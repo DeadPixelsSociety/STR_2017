@@ -145,57 +145,6 @@ void GameBoard::OnMouseMoved(int x, int y)
 
 
 // Debug function
-void GameBoard::DbgDisplayGrid(bool cartesian /* = true */)
-{
-    for (int i = 0; i < m_iWidth; ++i)
-    {
-        for (int j = 0; j < m_iHeight; ++j)
-        {
-            Vector2f pos;
-            if (cartesian)
-            {
-                // pos is left top corner
-                pos = m_aGameBoard[i][j]->GetCartesianPos();
-            }
-            else
-            {
-                // pos is top one corner
-                pos = m_aGameBoard[i][j]->GetPos();
-            }
-
-            RectangleShape tileShape = RectangleShape(Vector2f(TILE_WIDTH, TILE_HEIGHT));
-            tileShape.setPosition(pos);
-            tileShape.setOutlineThickness(5);
-            tileShape.setOutlineColor(sf::Color(250, 150, 100));
-            tileShape.setOrigin(TILE_WIDTH / 2, TILE_HEIGHT / 2);
-            m_pWindow->draw(tileShape);
-        }
-    }
-
-    for (int i = 0; i < m_iWidth; ++i)
-    {
-        for (int j = 0; j < m_iHeight; ++j)
-        {
-            Vector2f pos;
-            if (cartesian)
-            {
-                pos  = m_aGameBoard[i][j]->GetCartesianPos();
-            }
-            else
-            {
-                pos = m_aGameBoard[i][j]->GetPos();
-            }
-
-            CircleShape tilePoint = CircleShape(5);
-            tilePoint.setPosition(pos);
-            tilePoint.setFillColor(sf::Color(250, 0, 0));
-            tilePoint.setOrigin(TILE_WIDTH / 2, TILE_HEIGHT / 2);
-            m_pWindow->draw(tilePoint);
-        }
-    }
-}
-
-// Debug function
 void GameBoard::DbgDrawCenter(void)
 {
     sf::RectangleShape tileShape = sf::RectangleShape(sf::Vector2f(5, 5));

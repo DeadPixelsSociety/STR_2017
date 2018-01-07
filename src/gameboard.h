@@ -30,7 +30,6 @@ public:
     virtual void    OnMouseMoved            (int x, int y) override;
 
     // DBG
-    void    DbgDisplayGrid  (bool cartesian = true);
     void    DbgDrawCenter   (void);
 
 private:

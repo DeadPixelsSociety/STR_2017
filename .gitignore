@@ -3,6 +3,7 @@ build-STR_2017-Desktop_Qt_5_9_1_MSVC2015_64bit-Debug
 build-STR_2017-Desktop_Qt_5_9_1_MSVC2015_64bit-Release
 build-STR_2017-Desktop_Qt_5_9_2_MinGW_32bit-Debug
 build-STR_2017-Desktop_Qt_5_9_2_MinGW_32bit-Release
+build-STR_2017-Desktop_Qt_5_10_0_MinGW_32bit-Debug
 resources_local
 bin
 obj
