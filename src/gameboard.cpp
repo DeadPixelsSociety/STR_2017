@@ -32,7 +32,8 @@ void GameBoard::Initialize(void)
         vector<Tile *> raw;
         for (int j = 0; j < m_iWidth; ++j)
         {
-            raw.push_back(new Tile(tilePos));
+            raw.push_back(new Tile(tilePos, Tile::ETileType::GROUND));
+            raw[j]->Initialize();
             tilePos.x += TILE_WIDTH / 2; // ratio between tile width and height
         }
         m_aGameBoard.push_back(raw);
@@ -40,6 +41,7 @@ void GameBoard::Initialize(void)
         tilePos.x = 0.0f;
     }
 
+    // Background sprite
     m_blackBackgroundTexture.loadFromFile("../resources/fond_noir.png");
     m_blackBackgroundSprite = sf::Sprite(m_blackBackgroundTexture);
     m_blackBackgroundSprite.setOrigin(32.0f, 32.0f);
@@ -109,7 +111,15 @@ void GameBoard::OnMouseLeftPressed(int x, int y)
     printf("%d, %d\n\n", x, y);
     if (x >= 0 && y >= 0 && x < m_iWidth && y < m_iHeight)
     {
-        m_aGameBoard[y][x]->GetSprite()->setRotation(m_aGameBoard[y][x]->GetSprite()->getRotation() + 10.0f);
+        Tile::ETileType type = m_aGameBoard[y][x]->GetType();
+        if (Tile::ETileType::GROUND == type)
+        {
+            m_aGameBoard[y][x]->SetType(Tile::ETileType::ROAD);
+        }
+        else
+        {
+            m_aGameBoard[y][x]->SetType(Tile::ETileType::GROUND);
+        }
     }
 }
 

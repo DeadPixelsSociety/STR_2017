@@ -23,20 +23,40 @@ class Tile : public DrawableObject
 {
 public:
 
-    explicit Tile (sf::Vector2f pos);
+    enum class ETileType
+    {
+        GROUND,     // Default type
+        ROAD,
+        WALL,       // Every blocker block
+        BUILDED,
+        COAL,
+        COPPER,
+        IRON,
+        URANIUM
+    };
 
-    void            SetPos              (sf::Vector2f pos);
-    sf::Vector2f    GetPos              (void);
-    sf::Vector2f    GetCartesianPos     (void);
+    explicit Tile (const sf::Vector2f & pos, ETileType tileType);
 
-    sf::Sprite *    GetSprite           (void);
+    void            Initialize          (void);
+
+    ETileType       GetType             (void);
+    void            SetType             (ETileType newType);
+
+    sf::Vector2f &  GetPos              (void);
+    sf::Vector2f &  GetCartesianPos     (void);
 
 private:
 
-    sf::Vector2f m_cartesianPos; // TopDown coord
-    sf::Vector2f m_pos;          // Isometric coord
+    const char *          GetFileTextureFromType();
 
-    sf::Texture  m_texture;
+private:
+
+    ETileType       m_eTileType;
+    sf::Vector2f    m_cartesianPos; // TopDown coord
+    sf::Vector2f    m_pos;          // Isometric coord
+
+    sf::Texture     m_texture;
+    // Pointeur sur le building à stocker pour accès rapide au clic
 };
 
 #endif // TILE_H
