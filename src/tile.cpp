@@ -78,15 +78,15 @@ const char * Tile::GetFileTextureFromType()
 {
     switch(m_eTileType)
     {
-        case ETileType::GROUND:    return("resources/ground.png");
-        case ETileType::ROAD:      return("resources/road.png");
-        case ETileType::COAL:      return("resources/rock.png");
-        case ETileType::COPPER:    return("resources/rock.png");
-        case ETileType::IRON:      return("resources/rock.png");
-        case ETileType::URANIUM:   return("resources/rock.png");
+        case ETileType::GROUND:    return("../resources/ground.png");
+        case ETileType::ROAD:      return("../resources/road.png");
+        case ETileType::COAL:      return("../resources/rock.png");
+        case ETileType::COPPER:    return("../resources/rock.png");
+        case ETileType::IRON:      return("../resources/rock.png");
+        case ETileType::URANIUM:   return("../resources/rock.png");
 
         case ETileType::WALL:
         case ETileType::BUILDED:
-        default: return("resources/nosprite_error.png");;
+        default: return("../resources/nosprite_error.png");;
     }
 }
