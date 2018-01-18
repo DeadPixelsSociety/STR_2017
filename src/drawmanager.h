@@ -23,7 +23,6 @@ public:
 
     void    Initialize          (sf::RenderWindow * pWindow);
 
-    void    SetBackground       (sf::Sprite * pSprite);
     void    SetSelectionArea    (sf::RectangleShape * pArea);
 
     void    IsSelectionArea     (void);
@@ -44,7 +43,6 @@ private:
 
     sf::RenderWindow *      m_pWindow;
 
-    sf::Sprite *            m_pBlackBackground;
     sf::RectangleShape *    m_pSelectionArea;
 
     std::vector<DrawableObject *>   m_aSpriteList;

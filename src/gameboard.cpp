@@ -42,13 +42,6 @@ void GameBoard::Initialize(void)
         tilePos.y += TILE_HEIGHT;
         tilePos.x = 0.0f;
     }
-
-    // Background sprite
-    m_blackBackgroundTexture.loadFromFile("../resources/fond_noir.png");
-    m_blackBackgroundSprite = sf::Sprite(m_blackBackgroundTexture);
-    m_blackBackgroundSprite.setOrigin(32.0f, 32.0f);
-    m_blackBackgroundSprite.scale(10000.0f, 10000.0f);
-    g_drawManager.SetBackground(&m_blackBackgroundSprite);
 }
 
 ///

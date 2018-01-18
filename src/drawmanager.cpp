@@ -12,7 +12,6 @@ using namespace sf;
 ///
 DrawManager::DrawManager()
 : m_pWindow(nullptr)
-, m_pBlackBackground(nullptr)
 , m_pSelectionArea(nullptr)
 {
 }
@@ -24,15 +23,6 @@ DrawManager::DrawManager()
 void DrawManager::Initialize(RenderWindow * pWindow)
 {
     m_pWindow = pWindow;
-}
-
-///
-/// \brief Set du background de la map
-/// \param Sprite du background
-///
-void DrawManager::SetBackground(Sprite * pSprite)
-{
-    m_pBlackBackground = pSprite;
 }
 
 ///
@@ -78,7 +68,7 @@ void DrawManager::Draw(void)
 {
     // We can draw all element types one by one since we don't have sprite superposition (robot behind building)
 
-    m_pWindow->draw(*m_pBlackBackground);
+    m_pWindow->clear(Color::Black);
 
     DrawTiles();
     DrawBuildings();
