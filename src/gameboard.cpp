@@ -6,6 +6,8 @@
 #include "gameboard.h"
 #include "tile.h"
 
+#include <cmath>
+
 using namespace std;
 using namespace sf;
 
@@ -42,7 +44,7 @@ void GameBoard::Initialize(void)
     }
 
     // Background sprite
-    m_blackBackgroundTexture.loadFromFile("../resources/fond_noir.png");
+    m_blackBackgroundTexture.loadFromFile("resources/fond_noir.png");
     m_blackBackgroundSprite = sf::Sprite(m_blackBackgroundTexture);
     m_blackBackgroundSprite.setOrigin(32.0f, 32.0f);
     m_blackBackgroundSprite.scale(10000.0f, 10000.0f);

@@ -29,7 +29,9 @@ void GameState::Update(float dt)
         {
             if (event.type == sf::Event::Resized)
             {
-                g_cameraManager.GetCamera()->setSize((float)event.size.width, (float)event.size.height);
+                if (g_cameraManager.GetCamera() != nullptr) {
+                    g_cameraManager.GetCamera()->setSize((float)event.size.width, (float)event.size.height);
+                }
             }
             else if (event.type == sf::Event::Closed)
             {

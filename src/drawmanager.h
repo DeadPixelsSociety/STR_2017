@@ -8,6 +8,8 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "drawableobject.h"
+
 class DrawableObject;
 
 ///

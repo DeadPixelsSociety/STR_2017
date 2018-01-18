@@ -13,13 +13,14 @@
 //
 // SFML
 #include <SFML/Graphics.hpp>
-#include <SFML/Window.hpp>
 
 //
 // Game includes
 #include "drawmanager.h"
 #include "cameramanager.h"
 #include "drawableobject.h"
+
+class DrawManager;
 
 //
 // Global definitions
