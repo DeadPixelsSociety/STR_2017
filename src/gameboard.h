@@ -52,7 +52,7 @@ private:
 
     int                  m_iWidth;
     int                  m_iHeight;
-    std::vector<Tile *>  m_aGameBoard;
+    std::vector<Tile>  m_aGameBoard;
 //    std::vector<Robot *> m_aRobots;
 };
 

@@ -32,9 +32,10 @@ public:
         URANIUM
     };
 
-    explicit Tile (const sf::Vector2f & pos, ETileType tileType);
+    explicit Tile (void);
+    ~Tile(void);
 
-    void            Initialize          (void);
+    void            Initialize          (const sf::Vector2f & pos, ETileType tileType);
 
     ETileType       GetType             (void);
     void            SetType             (ETileType newType);

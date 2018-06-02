@@ -11,18 +11,22 @@ using namespace sf;
 /// \brief Constructeur
 /// \param Position cartesian de la tile
 ///
-Tile::Tile(const Vector2f & pos, Tile::ETileType tileType)
+Tile::Tile(void)
 : DrawableObject(1)
-, m_eTileType(tileType)
 {
-    SetPos(pos);
+}
+
+Tile::~Tile(void)
+{
 }
 
 ///
 /// \brief Initialize
 ///
-void Tile::Initialize()
+void Tile::Initialize(const Vector2f & pos, Tile::ETileType tileType)
 {
+    m_eTileType = tileType;
+    SetPos(pos);
     LoadTexture(GetFileTextureFromType());
     SetOrigin(g_tileSize / 2.f); // default origin 0,0 is left top corner
     g_drawManager.AddTileObject(this);

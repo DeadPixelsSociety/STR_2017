@@ -24,17 +24,12 @@ GameBoard::GameBoard(int width, int height, RenderWindow * pWindow)
 , m_bSelectionArea(false)
 , m_iWidth(width)
 , m_iHeight(height)
-, m_aGameBoard(m_iWidth * m_iHeight, nullptr)
+, m_aGameBoard(m_iWidth * m_iHeight)
 {
 }
 
 GameBoard::~GameBoard(void)
 {
-    for (Tile * t : m_aGameBoard)
-    {
-        delete t;
-    }
-
 //    for (Robot * r : m_aRobots)
 //    {
 //        delete r;
@@ -54,10 +49,7 @@ void GameBoard::InitializeTiles(void)
     {
         for (int j = 0; j < m_iWidth; ++j)
         {
-            Tile * t = new Tile(tilePos, Tile::ETileType::GROUND);
-            t->Initialize();
-            m_aGameBoard[Vec2Index(sf::Vector2u(j, i))] = t;
-
+            m_aGameBoard[Vec2Index(sf::Vector2u(j, i))].Initialize(tilePos, Tile::ETileType::GROUND);
             ++tilePos.x;
         }
         ++tilePos.y;
@@ -188,11 +180,10 @@ void GameBoard::DbgDrawCenter(void)
 
 Tile& GameBoard::GetTile(const sf::Vector2u& vec)
 {
-    return *m_aGameBoard[Vec2Index(vec)];
+    return m_aGameBoard[Vec2Index(vec)];
 }
 
 size_t GameBoard::Vec2Index(const sf::Vector2u& vec) const
 {
     return vec.y * m_iWidth + vec.x;
 }
-
