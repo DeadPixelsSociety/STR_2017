@@ -7,9 +7,9 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin/Debug/STR_2017" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="src/" />
-				<Option object_output="obj/Debug/" />
+				<Option output="bin/STR_2017" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin/" />
+				<Option object_output="obj/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
@@ -22,9 +22,9 @@
 				</Linker>
 			</Target>
 			<Target title="Release">
-				<Option output="bin/Release/STR_2017" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="src/" />
-				<Option object_output="obj/Release/" />
+				<Option output="bin/STR_2017" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin/" />
+				<Option object_output="obj/" />
 				<Option type="0" />
 				<Option compiler="gcc" />
 				<Compiler>
@@ -40,26 +40,38 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
-			<Add option="-std=c++11" />
-			<Add option="-fexceptions" />
-			<Add directory="D:/Libraries/SFML-2.3.2/include" />
+			<Add directory="$(#sfml.include)" />
 		</Compiler>
 		<Linker>
-			<Add directory="D:/Libraries/SFML-2.3.2/lib" />
+			<Add library="mingw32" />
+			<Add library="user32" />
+			<Add library="gdi32" />
+			<Add library="winmm" />
+			<Add library="dxguid" />
+			<Add directory="$(#sfml.lib)" />
 		</Linker>
+		<Unit filename="src/cameramanager.cpp" />
+		<Unit filename="src/cameramanager.h" />
+		<Unit filename="src/drawableobject.cpp" />
+		<Unit filename="src/drawableobject.h" />
 		<Unit filename="src/drawmanager.cpp" />
 		<Unit filename="src/drawmanager.h" />
 		<Unit filename="src/gameboard.cpp" />
 		<Unit filename="src/gameboard.h" />
+		<Unit filename="src/gamestate.cpp" />
+		<Unit filename="src/gamestate.h" />
 		<Unit filename="src/inputmanager.cpp" />
 		<Unit filename="src/inputmanager.h" />
 		<Unit filename="src/main.cpp" />
+		<Unit filename="src/robot.cpp" />
+		<Unit filename="src/robot.h" />
 		<Unit filename="src/stdafx.cpp" />
 		<Unit filename="src/stdafx.h" />
 		<Unit filename="src/tile.cpp" />
 		<Unit filename="src/tile.h" />
 		<Extensions>
 			<code_completion />
+			<envvars />
 			<debugger />
 		</Extensions>
 	</Project>

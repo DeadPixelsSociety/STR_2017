@@ -58,7 +58,12 @@ void DrawManager::AddBuildingObject(DrawableObject * pBuilding)
 ///
 void DrawManager::AddRobotObject(DrawableObject * pRobot)
 {
-    m_aRobotList.push_back(pRobot);
+    m_aRobotList.insert(pRobot);
+}
+
+void DrawManager::RemoveRobotObject(DrawableObject* pRobot)
+{
+    m_aRobotList.erase(pRobot);
 }
 
 ///
@@ -111,10 +116,9 @@ void DrawManager::DrawBuildings(void)
 ///
 void DrawManager::DrawRobots(void)
 {
-    size_t iRobotCount = m_aRobotList.size();
-    for (size_t i = 0; i < iRobotCount; ++i)
+    for (DrawableObject * r : m_aRobotList)
     {
-        m_aRobotList[i]->draw(*m_pWindow, RenderStates::Default);
+        r->draw(*m_pWindow, RenderStates::Default);
     }
 }
 

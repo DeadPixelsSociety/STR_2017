@@ -6,6 +6,7 @@
 #include "gameboard.h"
 #include "tile.h"
 
+#include <iostream>
 #include <cmath>
 
 using namespace std;
@@ -23,26 +24,53 @@ GameBoard::GameBoard(int width, int height, RenderWindow * pWindow)
 , m_bSelectionArea(false)
 , m_iWidth(width)
 , m_iHeight(height)
+, m_aGameBoard(m_iWidth * m_iHeight, nullptr)
 {
+}
+
+GameBoard::~GameBoard(void)
+{
+    for (Tile * t : m_aGameBoard)
+    {
+        delete t;
+    }
+
+//    for (Robot * r : m_aRobots)
+//    {
+//        delete r;
+//    }
 }
 
 void GameBoard::Initialize(void)
 {
+    InitializeTiles();
+//    InitializeRobots();
+}
+
+void GameBoard::InitializeTiles(void)
+{
     Vector2f tilePos(0.0f, 0.0f);
     for (int i = 0; i < m_iHeight; ++i)
     {
-        vector<Tile *> raw;
         for (int j = 0; j < m_iWidth; ++j)
         {
-            raw.push_back(new Tile(tilePos, Tile::ETileType::GROUND));
-            raw[j]->Initialize();
-            tilePos.x += TILE_WIDTH / 2; // ratio between tile width and height
+            Tile * t = new Tile(tilePos, Tile::ETileType::GROUND);
+            t->Initialize();
+            m_aGameBoard[Vec2Index(sf::Vector2u(j, i))] = t;
+
+            ++tilePos.x;
         }
-        m_aGameBoard.push_back(raw);
-        tilePos.y += TILE_HEIGHT;
+        ++tilePos.y;
         tilePos.x = 0.0f;
     }
 }
+
+//void GameBoard::InitializeRobots(void)
+//{
+//    Robot * r = new Robot(this, .0f, .0f);
+//    g_drawManager.AddRobotObject(r);
+//    m_aRobots.push_back(r);
+//}
 
 ///
 /// \brief Update du plateau
@@ -83,11 +111,9 @@ void GameBoard::OnMouseLeftPressed(int x, int y)
 {
     // Board iso coord
     Vector2f boardISo = m_pWindow->mapPixelToCoords(Vector2i(x,y), *g_cameraManager.GetCamera());
-    printf("%f, %f\n", boardISo.x, boardISo.y);
 
     // Board cartesian coord
     Vector2f boardCarte = IsometricToCartesian2(boardISo);
-    printf("%f, %f\n", boardCarte.x, boardCarte.y);
 
     // Trigger selection area
     m_selectionArea.setPosition(boardISo);
@@ -97,23 +123,21 @@ void GameBoard::OnMouseLeftPressed(int x, int y)
     g_drawManager.SetSelectionArea(&m_selectionArea);
     m_bSelectionArea = true;
 
-
-
     // DBG TEST - Get clicked tile
     Vector2f tempPt;
-    x = round(boardCarte.x / (TILE_WIDTH/2));
-    y = round(boardCarte.y / TILE_HEIGHT);
-    printf("%d, %d\n\n", x, y);
+    x = round(boardCarte.x);
+    y = round(boardCarte.y);
+
     if (x >= 0 && y >= 0 && x < m_iWidth && y < m_iHeight)
     {
-        Tile::ETileType type = m_aGameBoard[y][x]->GetType();
-        if (Tile::ETileType::GROUND == type)
+        Tile& t = GetTile(sf::Vector2u(x, y));
+        if (t.GetType() == Tile::ETileType::GROUND)
         {
-            m_aGameBoard[y][x]->SetType(Tile::ETileType::ROAD);
+            t.SetType(Tile::ETileType::ROAD);
         }
         else
         {
-            m_aGameBoard[y][x]->SetType(Tile::ETileType::GROUND);
+            t.SetType(Tile::ETileType::GROUND);
         }
     }
 }
@@ -156,8 +180,19 @@ void GameBoard::OnMouseMoved(int x, int y)
 // Debug function
 void GameBoard::DbgDrawCenter(void)
 {
-    sf::RectangleShape tileShape = sf::RectangleShape(sf::Vector2f(5, 5));
+    sf::RectangleShape tileShape(sf::Vector2f(5, 5));
     tileShape.setPosition(0, 0);
     tileShape.setOrigin(2.5, 2.5);
     m_pWindow->draw(tileShape);
 }
+
+Tile& GameBoard::GetTile(const sf::Vector2u& vec)
+{
+    return *m_aGameBoard[Vec2Index(vec)];
+}
+
+size_t GameBoard::Vec2Index(const sf::Vector2u& vec) const
+{
+    return vec.y * m_iWidth + vec.x;
+}
+

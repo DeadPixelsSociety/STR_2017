@@ -3,8 +3,9 @@
 
 #include "stdafx.h"
 #include "gameboard.h"
+#include "drawableobject.h"
 
-class Robot
+class Robot : public DrawableObject
 {
 public:
 
@@ -36,6 +37,15 @@ public:
     bool		GetBSelected    (void) const;
 
 private:
+    enum Direction : size_t
+    {
+        SW = 0,
+        NE = 1,
+        NW = 2,
+        SE = 3
+    };
+
+    virtual void UpdateSprites(float dt);
 
 	RobotType	m_type;
 
@@ -51,10 +61,6 @@ private:
 	float		m_fEnergy;
 
 	bool		m_bSelected;
-
-    std::vector<sf::Sprite> m_aSpriteList; // Sprite list for animation
-    int m_iCurrentSpriteId;
-    // use m_drawableSprite as current sprite to draw
 };
 
 #endif // ROBOT_H

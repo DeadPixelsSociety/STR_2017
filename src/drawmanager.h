@@ -8,6 +8,8 @@
 
 #include <SFML/Graphics.hpp>
 
+#include <unordered_set>
+
 #include "drawableobject.h"
 
 class DrawableObject;
@@ -30,6 +32,9 @@ public:
     void    AddTileObject       (DrawableObject * pTile);
     void    AddBuildingObject   (DrawableObject * pBuilding);
     void    AddRobotObject      (DrawableObject * pRobot);
+
+    void    RemoveRobotObject   (DrawableObject * pRobot);
+
     void    Draw                (void);
 
 private:
@@ -47,7 +52,7 @@ private:
 
     std::vector<DrawableObject *>   m_aSpriteList;
     std::vector<DrawableObject *>   m_aBuildingList;
-    std::vector<DrawableObject *>   m_aRobotList;
+    std::unordered_set<DrawableObject *>   m_aRobotList;
 
     // GUI: need to think about this
 };

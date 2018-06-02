@@ -1,7 +1,8 @@
 #include "robot.h"
 
 Robot::Robot(GameBoard * pGameboard, float x, float y)
-: m_type(RobotType::BUILDER)
+: DrawableObject(4)
+, m_type(RobotType::BUILDER)
 , m_pBoard(pGameboard)
 , m_fx(x)
 , m_fy(y)
@@ -9,8 +10,8 @@ Robot::Robot(GameBoard * pGameboard, float x, float y)
 , m_fyTarget(y)
 , m_fDamage(0)
 , m_fEnergy(100)
-, m_iCurrentSpriteId(0)
 {
+    LoadTexture("../resources/robot.png");
 }
 
 Robot::~Robot(void)
@@ -30,6 +31,7 @@ void Robot::Deselect(void)
 void Robot::Update(float dt)
 {
     // Update animation
+    UpdateSprites(dt);
 }
 
 float Robot::GetFx(void) const
@@ -60,4 +62,21 @@ bool Robot::GetBSelected(void) const
 Robot::RobotType Robot::GetType(void) const
 {
 	return m_type;
+}
+
+void Robot::UpdateSprites(float dt)
+{
+    if (m_fxTarget < m_fx) {
+        if (m_fyTarget < m_fy) {
+            SetState(Direction::NW);
+        } else {
+            SetState(Direction::SW);
+        }
+    } else {
+        if (m_fyTarget < m_fy) {
+            SetState(Direction::NE);
+        } else {
+            SetState(Direction::SE);
+        }
+    }
 }

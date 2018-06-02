@@ -8,9 +8,6 @@
 
 #include "stdafx.h"
 
-#define TILE_WIDTH 128
-#define TILE_HEIGHT 64
-
 ///
 /// \class Tile
 /// \brief Case affichable
@@ -42,9 +39,6 @@ public:
     ETileType       GetType             (void);
     void            SetType             (ETileType newType);
 
-    sf::Vector2f &  GetPos              (void);
-    sf::Vector2f &  GetCartesianPos     (void);
-
 private:
 
     const char *          GetFileTextureFromType();
@@ -52,11 +46,8 @@ private:
 private:
 
     ETileType       m_eTileType;
-    sf::Vector2f    m_cartesianPos; // TopDown coord
-    sf::Vector2f    m_pos;          // Isometric coord
 
-    sf::Texture     m_texture;
-    // Pointeur sur le building à stocker pour accès rapide au clic
+    // TODO: Pointeur sur le building à stocker pour accès rapide au clic
 };
 
 #endif // TILE_H

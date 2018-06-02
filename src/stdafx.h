@@ -27,6 +27,8 @@ class DrawManager;
 extern  DrawManager     g_drawManager;
 extern  CameraManager   g_cameraManager;
 
+const sf::Vector2f  g_tileSize(128.f, 64.f);
+
 //
 // Common functions
 sf::Vector2f CartesianToIsometric2(sf::Vector2f cartPos);

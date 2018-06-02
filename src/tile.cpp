@@ -12,9 +12,10 @@ using namespace sf;
 /// \param Position cartesian de la tile
 ///
 Tile::Tile(const Vector2f & pos, Tile::ETileType tileType)
-: m_eTileType(tileType)
-, m_cartesianPos(pos)
+: DrawableObject(1)
+, m_eTileType(tileType)
 {
+    SetPos(pos);
 }
 
 ///
@@ -22,13 +23,10 @@ Tile::Tile(const Vector2f & pos, Tile::ETileType tileType)
 ///
 void Tile::Initialize()
 {
-    m_pos = CartesianToIsometric2(m_cartesianPos);
-    m_texture.loadFromFile(GetFileTextureFromType());
-    m_drawableSprite = Sprite(m_texture);
-    m_drawableSprite.setPosition(m_pos);
-    m_drawableSprite.setOrigin(TILE_WIDTH / 2 , TILE_HEIGHT / 2); // default origin 0,0 is left top corner
+    LoadTexture(GetFileTextureFromType());
+    SetOrigin(g_tileSize / 2.f); // default origin 0,0 is left top corner
     g_drawManager.AddTileObject(this);
-    printf("%f, %f / %f, %f\n", m_cartesianPos.x, m_cartesianPos.y, m_pos.x, m_pos.y);
+    printf("Tile initialization: (%f, %f)\n", m_pos.x, m_pos.y);
 }
 
 ///
@@ -46,28 +44,7 @@ Tile::ETileType Tile::GetType(void)
 void Tile::SetType(ETileType newType)
 {
     m_eTileType = newType;
-    m_texture.loadFromFile(GetFileTextureFromType());
-    m_drawableSprite = Sprite(m_texture);
-    m_drawableSprite.setPosition(m_pos);
-    m_drawableSprite.setOrigin(TILE_WIDTH / 2 , TILE_HEIGHT / 2); // default origin 0,0 is left top corner
-}
-
-///
-/// \brief Renvoi la position de la case
-/// \return La position en coordonnées isométrique
-///
-Vector2f & Tile::GetPos(void)
-{
-    return(m_pos);
-}
-
-///
-/// \brief Renvoi la position de la case en coordonnées cartésiennes
-/// \return La position en coordonnées cartésiennes
-///
-Vector2f & Tile::GetCartesianPos(void)
-{
-    return(m_cartesianPos);
+    LoadTexture(GetFileTextureFromType());
 }
 
 ///

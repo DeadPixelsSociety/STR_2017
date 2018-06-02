@@ -18,6 +18,7 @@ class GameBoard final: public IInputEvents
 {
 public:
     explicit    GameBoard   (int width, int height, sf::RenderWindow * pWindow);
+                ~GameBoard  (void);
 
     void        Update      (float dt);
 
@@ -35,18 +36,24 @@ public:
     void    DbgDrawCenter   (void);
 
 private:
+    void    InitializeTiles  (void);
+    void    InitializeRobots (void);
 
-    sf::RenderWindow *  m_pWindow;
+    Tile&  GetTile   (const sf::Vector2u& vec);
+    size_t Vec2Index (const sf::Vector2u& vec) const;
 
-    sf::Texture         m_blackBackgroundTexture;
-    sf::Sprite          m_blackBackgroundSprite;
+    sf::RenderWindow *   m_pWindow;
 
-    sf::RectangleShape  m_selectionArea;
-    bool                m_bSelectionArea;
+    sf::Texture          m_blackBackgroundTexture;
+    sf::Sprite           m_blackBackgroundSprite;
 
-    int                 m_iWidth;
-    int                 m_iHeight;
-    std::vector<std::vector<Tile *>> m_aGameBoard;
+    sf::RectangleShape   m_selectionArea;
+    bool                 m_bSelectionArea;
+
+    int                  m_iWidth;
+    int                  m_iHeight;
+    std::vector<Tile *>  m_aGameBoard;
+//    std::vector<Robot *> m_aRobots;
 };
 
 #endif // GAMEBOARD_H

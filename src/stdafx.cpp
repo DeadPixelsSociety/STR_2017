@@ -5,6 +5,8 @@
 
 #include "stdafx.h"
 
+#include <cmath>
+
 using namespace sf;
 
 ///
@@ -14,8 +16,8 @@ using namespace sf;
 Vector2f CartesianToIsometric2(Vector2f cartPos)
 {
     Vector2f isometricPos;
-    isometricPos.x = cartPos.x - cartPos.y;
-    isometricPos.y = (cartPos.x + cartPos.y) / 2;
+    isometricPos.x = g_tileSize.x * (cartPos.x - cartPos.y);
+    isometricPos.y = g_tileSize.y * (cartPos.x + cartPos.y) / 2.f;
 
     return(isometricPos);
 }
@@ -27,8 +29,8 @@ Vector2f CartesianToIsometric2(Vector2f cartPos)
 Vector3f CartesianToIsometric3(Vector3f cartPos)
 {
     Vector3f isometricPos;
-    isometricPos.x = cartPos.x - cartPos.y;
-    isometricPos.y = (cartPos.x + cartPos.y) / 2;
+    isometricPos.x = g_tileSize.x * (cartPos.x - cartPos.y);
+    isometricPos.y = g_tileSize.y * (cartPos.x + cartPos.y) / 2.f;
     isometricPos.z = cartPos.z;
 
     return(isometricPos);
@@ -41,8 +43,8 @@ Vector3f CartesianToIsometric3(Vector3f cartPos)
 Vector2f IsometricToCartesian2(Vector2f isoPos)
 {
     Vector2f cartesianPos;
-    cartesianPos.x = (2 * isoPos.y + isoPos.x) / 2;
-    cartesianPos.y = (2 * isoPos.y - isoPos.x) / 2;
+    cartesianPos.x = isoPos.y / g_tileSize.y + isoPos.x / g_tileSize.x;
+    cartesianPos.y = isoPos.y / g_tileSize.y - isoPos.x / g_tileSize.x;
 
     return(cartesianPos);
 }
@@ -54,8 +56,8 @@ Vector2f IsometricToCartesian2(Vector2f isoPos)
 Vector3f IsometricToCartesian3(Vector3f isoPos)
 {
     Vector3f cartesianPos;
-    cartesianPos.x = (2 * isoPos.y + isoPos.x) / 2;
-    cartesianPos.y = (2 * isoPos.y - isoPos.x) / 2;
+    cartesianPos.x = isoPos.y / g_tileSize.y + isoPos.x / g_tileSize.x;
+    cartesianPos.y = isoPos.y / g_tileSize.y - isoPos.x / g_tileSize.x;
     cartesianPos.z = isoPos.z;
 
     return(cartesianPos);
