@@ -32,20 +32,22 @@ SOURCES += main.cpp \
     gameboard.cpp \
     tile.cpp \
     stdafx.cpp \
-    drawmanager.cpp \
     inputmanager.cpp \
     cameramanager.cpp \
     robot.cpp \
     drawableobject.cpp \
-    gamestate.cpp
+    gamestate.cpp \
+    drawerobject.cpp \
+    gameguitop.cpp
 
 HEADERS += \
     gameboard.h \
     tile.h \
     stdafx.h \
-    drawmanager.h \
     inputmanager.h \
     cameramanager.h \
     robot.h \
     drawableobject.h \
-    gamestate.h
+    gamestate.h \
+    drawerobject.h \
+    gameguitop.h

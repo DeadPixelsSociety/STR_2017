@@ -9,7 +9,6 @@
 
 using namespace std;
 
-DrawManager g_drawManager;
 CameraManager g_cameraManager;
 
 ///
@@ -33,6 +32,8 @@ int main()
 
         gameState.Update(dt);
     }
+
+    gameState.Release();
 
     return 0;
 }

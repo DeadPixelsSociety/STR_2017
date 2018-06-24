@@ -18,8 +18,8 @@ using namespace sf;
 /// \param Height du plateau
 /// \param Render Window
 ///
-GameBoard::GameBoard(int width, int height, RenderWindow * pWindow)
-: m_pWindow(pWindow)
+GameBoard::GameBoard(int width, int height, RenderWindow * pWindow, View * pView)
+: DrawerObject(pWindow, pView)
 , m_selectionArea(RectangleShape())
 , m_bSelectionArea(false)
 , m_iWidth(width)
@@ -60,7 +60,6 @@ void GameBoard::InitializeTiles(void)
 //void GameBoard::InitializeRobots(void)
 //{
 //    Robot * r = new Robot(this, .0f, .0f);
-//    g_drawManager.AddRobotObject(r);
 //    m_aRobots.push_back(r);
 //}
 
@@ -71,6 +70,35 @@ void GameBoard::InitializeTiles(void)
 void GameBoard::Update(float dt)
 {
     // Update all elements related to game board
+}
+
+///
+/// \brief Draw du plateau
+///
+void GameBoard::Draw(void)
+{
+    m_pWindow->setView(*m_pView);
+
+    // Tiles
+    int iTileSize = m_aGameBoard.size();
+    for (int i = 0; i < iTileSize; ++i)
+    {
+       m_aGameBoard[i].draw(*m_pWindow, RenderStates::Default);
+    }
+
+    // Buildings
+
+    // Robots
+    //for (Robot * r : m_aRobots)
+    //{
+    //    r->draw(*m_pWindow, RenderStates::Default);
+    //}
+
+    // Selection area
+    if (m_bSelectionArea)
+        m_pWindow->draw(m_selectionArea);
+
+    DbgDrawCenter();
 }
 
 //-////////// MOUSE EVENTS //////////////-//
@@ -107,16 +135,17 @@ void GameBoard::OnMouseLeftPressed(int x, int y)
     // Board cartesian coord
     Vector2f boardCarte = IsometricToCartesian2(boardISo);
 
+    //printf("OnMouseLeftPressed Iso: (%f, %f)\n", boardISo.x, boardISo.y);
+    //printf("OnMouseLeftPressed Carte: (%f, %f)\n", boardCarte.x, boardCarte.y);
+
     // Trigger selection area
     m_selectionArea.setPosition(boardISo);
     m_selectionArea.setSize(Vector2f(0.0f, 0.0f));
     m_selectionArea.setOutlineThickness(3);
     m_selectionArea.setFillColor(Color::Transparent);
-    g_drawManager.SetSelectionArea(&m_selectionArea);
     m_bSelectionArea = true;
 
     // DBG TEST - Get clicked tile
-    Vector2f tempPt;
     x = round(boardCarte.x);
     y = round(boardCarte.y);
 
@@ -145,7 +174,6 @@ void GameBoard::OnMouseLeftReleased(int x, int y)
     // Compute carte board area with origin & size.
     // Then check what is on it.
     m_bSelectionArea = false;
-    g_drawManager.SetSelectionArea(nullptr);
 }
 
 ///

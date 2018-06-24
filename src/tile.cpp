@@ -29,8 +29,7 @@ void Tile::Initialize(const Vector2f & pos, Tile::ETileType tileType)
     SetPos(pos);
     LoadTexture(GetFileTextureFromType());
     SetOrigin(g_tileSize / 2.f); // default origin 0,0 is left top corner
-    g_drawManager.AddTileObject(this);
-    printf("Tile initialization: (%f, %f)\n", m_pos.x, m_pos.y);
+    //printf("Tile initialization: (%f, %f)\n", m_pos.x, m_pos.y);
 }
 
 ///

@@ -16,15 +16,12 @@
 
 //
 // Game includes
-#include "drawmanager.h"
+#include "drawerobject.h"
 #include "cameramanager.h"
 #include "drawableobject.h"
 
-class DrawManager;
-
 //
 // Global definitions
-extern  DrawManager     g_drawManager;
 extern  CameraManager   g_cameraManager;
 
 const sf::Vector2f  g_tileSize(128.f, 64.f);

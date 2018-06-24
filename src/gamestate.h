@@ -4,6 +4,7 @@
 #include "stdafx.h"
 
 class GameBoard;
+class GameGUItop;
 class InputManager;
 
 class GameState final : public IInputEvents
@@ -22,6 +23,8 @@ public:
     explicit GameState  (void);
 
     void    Initialize  (sf::RenderWindow * pWindow);
+    void    Release     (void);
+
     void    Update      (float dt);
 
     void    SetPause    (bool pause);
@@ -44,10 +47,14 @@ private:
     EGameState          m_eGameState;
 
     sf::RenderWindow *  m_pWindow;
-    sf::View            m_camera;
+    sf::View            m_viewGameBoard;
+    sf::View            m_viewGameGUItop;
+    sf::View            m_viewGameGUIbottom;
 
     InputManager *      m_pInputs;
     GameBoard *         m_pGameBoard;
+    GameGUItop *        m_pGameGUItop;
+
 };
 
 #endif // GAMESTATE_H
