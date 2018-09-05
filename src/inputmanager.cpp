@@ -3,8 +3,8 @@
 /// \brief Implémentation de la classe InputManager
 ///
 
-#include "inputmanager.h"
-#include "gamestate.h"
+#include "../include/inputmanager.h"
+#include "../include/gamestate.h"
 
 using namespace sf;
 

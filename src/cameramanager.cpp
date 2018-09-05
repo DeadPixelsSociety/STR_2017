@@ -3,8 +3,8 @@
 /// \brief Implémentation de la classe CameraManager
 ///
 
-#include "cameramanager.h"
-#include "inputmanager.h"
+#include "../include/cameramanager.h"
+#include "../include/inputmanager.h"
 
 ///
 /// \brief Constructeur

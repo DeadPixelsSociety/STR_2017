@@ -1,4 +1,4 @@
-#include "robot.h"
+#include "../include/robot.h"
 
 Robot::Robot(GameBoard * pGameboard, float x, float y)
 : DrawableObject(4)

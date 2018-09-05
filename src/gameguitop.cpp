@@ -1,4 +1,4 @@
-#include "gameguitop.h"
+#include "../include/gameguitop.h"
 
 GameGUItop::GameGUItop(sf::RenderWindow * pWindow, sf::View * pView)
     : DrawerObject(pWindow, pView)

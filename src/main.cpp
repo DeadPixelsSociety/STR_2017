@@ -1,6 +1,7 @@
-#include "stdafx.h"
+#include "../include/stdafx.h"
 
-#include "gamestate.h"
+#include "../include/gamestate.h"
+#include "../include/spritemanager.h"
 
 ///
 /// \file main.cpp

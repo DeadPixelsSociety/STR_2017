@@ -6,7 +6,7 @@ CONFIG -= qt
 DEFINES += SFML_STATIC
 DEFINES += QT_DEPRECATED_WARNINGS
 
-PRECOMPILED_HEADER += stdafx.h
+PRECOMPILED_HEADER += ../include/stdafx.h
 
 #message($$QMAKESPEC)
 
@@ -41,13 +41,13 @@ SOURCES += main.cpp \
     gameguitop.cpp
 
 HEADERS += \
-    gameboard.h \
-    tile.h \
-    stdafx.h \
-    inputmanager.h \
-    cameramanager.h \
-    robot.h \
-    drawableobject.h \
-    gamestate.h \
-    drawerobject.h \
-    gameguitop.h
+    ../include/gameboard.h \
+    ../include/tile.h \
+    ../include/stdafx.h \
+    ../include/inputmanager.h \
+    ../include/cameramanager.h \
+    ../include/robot.h \
+    ../include/drawableobject.h \
+    ../include/gamestate.h \
+    ../include/drawerobject.h \
+    ../include/gameguitop.h

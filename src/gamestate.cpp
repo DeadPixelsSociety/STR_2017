@@ -1,8 +1,9 @@
-#include "gamestate.h"
+#include "../include/gamestate.h"
 
-#include "gameboard.h"
-#include "gameguitop.h"
-#include "inputmanager.h"
+#include "../include/gameboard.h"
+#include "../include/gameguitop.h"
+#include "../include/inputmanager.h"
+#include "../include/spritemanager.h"
 
 GameState::GameState(void)
 : m_eGameState(INIT_MENU)
@@ -84,6 +85,8 @@ void GameState::Update(float dt)
             m_pGameBoard->Initialize();
 
             g_cameraManager.Initialize(&m_viewGameBoard, m_pInputs, 10.0f);
+
+            SpriteManager::GetInstance();
 
             m_eGameState = PLAYING;
         }

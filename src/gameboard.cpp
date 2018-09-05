@@ -3,8 +3,8 @@
 /// \brief Implémentation de la classe GameBoard
 ///
 
-#include "gameboard.h"
-#include "tile.h"
+#include "../include/gameboard.h"
+#include "../include/tile.h"
 
 #include <iostream>
 #include <cmath>

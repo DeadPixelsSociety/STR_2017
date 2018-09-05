@@ -3,7 +3,7 @@
 /// \brief Implémentations des fonctions usuelles
 ///
 
-#include "stdafx.h"
+#include "../include/stdafx.h"
 
 #include <cmath>
 

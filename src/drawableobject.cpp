@@ -1,4 +1,4 @@
-#include "drawableobject.h"
+#include "../include/drawableobject.h"
 
 #include <cassert>
 

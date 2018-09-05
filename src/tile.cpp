@@ -3,7 +3,7 @@
 /// \brief Implémentation de la classe Tile
 ///
 
-#include "tile.h"
+#include "../include/tile.h"
 
 using namespace sf;
 
