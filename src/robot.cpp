@@ -1,7 +1,8 @@
 #include "../include/robot.h"
+#include "../include/spritemanager.h"
 
 Robot::Robot(GameBoard * pGameboard, float x, float y)
-: DrawableObject(4)
+: DrawableObject()
 , m_type(RobotType::BUILDER)
 , m_pBoard(pGameboard)
 , m_fx(x)
@@ -11,7 +12,10 @@ Robot::Robot(GameBoard * pGameboard, float x, float y)
 , m_fDamage(0)
 , m_fEnergy(100)
 {
-    LoadTexture("../resources/robot.png");
+    m_anim.addState(SpriteManager::GetInstance().GetSprite("ROBOT_0"), 1);
+    m_anim.addState(SpriteManager::GetInstance().GetSprite("ROBOT_1"), 1);
+    m_anim.addState(SpriteManager::GetInstance().GetSprite("ROBOT_2"), 1);
+    m_anim.addState(SpriteManager::GetInstance().GetSprite("ROBOT_3"), 1);
 }
 
 Robot::~Robot(void)
@@ -31,6 +35,8 @@ void Robot::Deselect(void)
 void Robot::Update(float dt)
 {
     // Update animation
+    DrawableObject::Update(dt);
+
     UpdateSprites(dt);
 }
 

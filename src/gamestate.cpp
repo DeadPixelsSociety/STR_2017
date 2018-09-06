@@ -70,6 +70,8 @@ void GameState::Update(float dt)
 
         case INIT_GAME:
         {
+            SpriteManager::GetInstance();
+
             m_viewGameBoard.setSize(1920, 1080);
             m_viewGameBoard.setCenter(0.0f, 0.0f);
             m_viewGameBoard.setViewport(sf::FloatRect(0.0f, 0.05f, 1.0f, 0.75f));
@@ -86,8 +88,6 @@ void GameState::Update(float dt)
 
             g_cameraManager.Initialize(&m_viewGameBoard, m_pInputs, 10.0f);
 
-            SpriteManager::GetInstance();
-
             m_eGameState = PLAYING;
         }
         break;
@@ -103,7 +103,7 @@ void GameState::Update(float dt)
             m_pGameBoard->Draw();
             m_pGameGUItop->Draw();
             // gui down draw
-
+            //m_pWindow->draw(SpriteManager::GetInstance().GetSprite("GROUND_0"));
             m_pWindow->display();
         }
         break;

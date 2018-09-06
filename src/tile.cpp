@@ -4,6 +4,7 @@
 ///
 
 #include "../include/tile.h"
+#include "../include/spritemanager.h"
 
 using namespace sf;
 
@@ -12,7 +13,7 @@ using namespace sf;
 /// \param Position cartesian de la tile
 ///
 Tile::Tile(void)
-: DrawableObject(1)
+: DrawableObject()
 {
 }
 
@@ -26,8 +27,9 @@ Tile::~Tile(void)
 void Tile::Initialize(const Vector2f & pos, Tile::ETileType tileType)
 {
     m_eTileType = tileType;
+    m_anim.addState(GetSpriteFromType(), 1);
+
     SetPos(pos);
-    LoadTexture(GetFileTextureFromType());
     SetOrigin(g_tileSize / 2.f); // default origin 0,0 is left top corner
     //printf("Tile initialization: (%f, %f)\n", m_pos.x, m_pos.y);
 }
@@ -47,26 +49,23 @@ Tile::ETileType Tile::GetType(void)
 void Tile::SetType(ETileType newType)
 {
     m_eTileType = newType;
-    LoadTexture(GetFileTextureFromType());
+    m_anim.removeState();
+    m_anim.addState(GetSpriteFromType(), 1);
 }
 
-///
-/// \brief Renvoi le path de la texture correspondant au type
-/// \return Le path vers la ressource correspondante
-///
-const char * Tile::GetFileTextureFromType()
+sf::Sprite& Tile::GetSpriteFromType()
 {
     switch(m_eTileType)
     {
-        case ETileType::GROUND:    return("../resources/ground.png");
-        case ETileType::ROAD:      return("../resources/road.png");
-        case ETileType::COAL:      return("../resources/rock.png");
-        case ETileType::COPPER:    return("../resources/rock.png");
-        case ETileType::IRON:      return("../resources/rock.png");
-        case ETileType::URANIUM:   return("../resources/rock.png");
+        case ETileType::GROUND:    return(SpriteManager::GetInstance().GetSprite("GROUND_0"));
+        case ETileType::ROAD:      return(SpriteManager::GetInstance().GetSprite("ROAD_0"));
+        case ETileType::COAL:      return(SpriteManager::GetInstance().GetSprite("ROCK_0"));
+        case ETileType::COPPER:    return(SpriteManager::GetInstance().GetSprite("ROCK_0"));
+        case ETileType::IRON:      return(SpriteManager::GetInstance().GetSprite("ROCK_0"));
+        case ETileType::URANIUM:   return(SpriteManager::GetInstance().GetSprite("ROCK_0"));
 
         case ETileType::WALL:
         case ETileType::BUILDED:
-        default: return("../resources/nosprite_error.png");;
+        default: return(SpriteManager::GetInstance().GetSprite("DEFAULT"));;
     }
 }

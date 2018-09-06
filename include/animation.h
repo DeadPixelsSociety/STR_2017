@@ -41,7 +41,11 @@ class Animation
 
         void            setStep         (std::size_t stepIndex);
 
-        sf::Sprite&     getActualSprite (float dt);
+        void            removeState     (void);
+
+        sf::Sprite&     getActualSprite (void) const;
+
+        void            update          (float dt);
 
     private:
         std::vector<std::vector<AnimationStep> > m_states;

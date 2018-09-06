@@ -26,6 +26,8 @@ class SpriteManager
 
         sf::Sprite&             GetSprite(const std::string& spriteName);
 
+        ~SpriteManager(void);
+
     private:
         SpriteManager(void);
 
@@ -33,7 +35,7 @@ class SpriteManager
 
     private:
         std::unordered_map<std::string, sf::Sprite> m_spriteMap;
-        std::vector<sf::Texture> m_textureVector;
+        std::vector<sf::Texture*> m_textureVector;
 
 };
 

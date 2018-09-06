@@ -73,14 +73,39 @@ void Animation::setStep(std::size_t stepIndex)
 }
 
 ///
+/// \brief Remove the last added state.
+///
+void Animation::removeState(void)
+{
+    if(!m_states.empty())
+    {
+        if(m_currentState == m_states.size() - 1 )
+        {
+            setState(0);
+        }
+
+        m_states.pop_back();
+    }
+}
+
+///
 /// \brief Get the actual sprite.
 ///
-/// Get the sprite of the current step and handle step transition.
+/// Get the sprite of the current step.
 ///
-/// \param dt The delta t between two frames.
 /// \return The sprite.
 ///
-sf::Sprite& Animation::getActualSprite(float dt)
+sf::Sprite& Animation::getActualSprite(void) const
+{
+    return m_states[m_currentState][m_currentStep].sprite;
+}
+
+///
+/// \brief Update steps.
+///
+/// \param dt The delta t between two frames
+///
+void Animation::update(float dt)
 {
     if(m_fCurrentTime >= m_states[m_currentState][m_currentStep].stepDuration)
     {
@@ -89,6 +114,4 @@ sf::Sprite& Animation::getActualSprite(float dt)
     }
 
     m_fCurrentTime += dt;
-
-    return m_states[m_currentState][m_currentStep].sprite;
 }

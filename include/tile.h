@@ -42,7 +42,7 @@ public:
 
 private:
 
-    const char *          GetFileTextureFromType();
+        sf::Sprite&           GetSpriteFromType();
 
 private:
 

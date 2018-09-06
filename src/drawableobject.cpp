@@ -2,36 +2,40 @@
 
 #include <cassert>
 
-DrawableObject::DrawableObject(vecsize_t nStates)
-: m_aSpriteStates(nStates)
-, m_pCurrentSpr2Draw(nullptr)
-, m_textureSize(0, 0)
-, m_uNStates(nStates)
+DrawableObject::DrawableObject() : m_state(0)
 {
-    assert(m_uNStates > 0);
-
-    for (sf::Sprite& spr : m_aSpriteStates)
-    {
-        spr.setTexture(m_spriteSheet);
-    }
-
-    SetState(0);
 }
 
 ///
-/// \brief Draw du sprite
+/// \brief Object draw.
+///
+/// An inherited class shouldn't override this method
+/// except if you know what you're doing.
+///
+/// \param target The render target.
+/// \param states The render states.
 ///
 /*virtual*/ void DrawableObject::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
     states.transform *= m_transform.getTransform();
-    target.draw(*m_pCurrentSpr2Draw, states);
+    target.draw(m_anim.getActualSprite(), states);
 }
 
+///
+/// \brief Return the current object position.
+///
+/// \return The position.
+///
 sf::Vector2f DrawableObject::GetPos(void) const
 {
     return m_pos;
 }
 
+///
+/// \brief Set the new object position.
+///
+/// \param pos The new position.
+///
 void DrawableObject::SetPos(sf::Vector2f pos)
 {
     m_pos = pos;
@@ -39,31 +43,37 @@ void DrawableObject::SetPos(sf::Vector2f pos)
     m_transform.setPosition(pos.x / 2.f, pos.y);
 }
 
+///
+/// \brief Set the new object origin.
+///
+/// \param origin the new origin.
+///
 void DrawableObject::SetOrigin(const sf::Vector2f& origin)
 {
     m_transform.setOrigin(origin);
 }
 
-
-void DrawableObject::SetState(vecsize_t state)
+///
+/// \brief Set the new animation state.
+///
+/// \param state The state index.
+///
+void DrawableObject::SetState(std::size_t state)
 {
-    assert(state < m_uNStates);
-
-    m_pCurrentSpr2Draw = &m_aSpriteStates[state];
+    m_anim.setState(state);
+    m_state = state;
 }
 
-bool DrawableObject::LoadTexture(const std::string& filename)
+///
+/// \brief Update the animation.
+///
+/// If this function is overriden in a derivated class
+/// it must be called in the overriding method otherwise
+/// animation won't works.
+///
+/// \param dt The delta t between frames.
+///
+void DrawableObject::Update(float dt)
 {
-    bool res = m_spriteSheet.loadFromFile(filename);
-    m_textureSize = m_spriteSheet.getSize();
-    m_textureSize.y /= m_uNStates;
-
-    sf::IntRect textureClip(0, 0, m_textureSize.x, m_textureSize.y);
-    for (sf::Sprite& spr : m_aSpriteStates)
-    {
-        spr.setTextureRect(textureClip);
-        textureClip.top += m_textureSize.y;
-    }
-
-    return res;
+    m_anim.update(dt);
 }

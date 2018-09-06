@@ -1,38 +1,49 @@
 #ifndef DRAWABLEOBJECT_H
 #define DRAWABLEOBJECT_H
 
-#include "stdafx.h"
+///
+/// \file drawableobject.h
+/// \brief DrawableObject class header
+///
 
+#include "stdafx.h"
+#include "animation.h"
+
+///
+/// \class DrawableObject
+/// \brief All drawable object must inherit from this class
+///
+/// A class that inherit from this must add its animations at initialisation time.
+/// An inherited class should not need to care about graphics except at initialisation.
+/// The inherited class should use the SetState() method to change the current animation.
+///
 class DrawableObject : public sf::Drawable
 {
-public:
-    using vecsize_t = std::vector<sf::Sprite>::size_type;
+    public:
 
-    DrawableObject      (vecsize_t nStates);
+        DrawableObject();
 
-    virtual void draw   (sf::RenderTarget& target, sf::RenderStates states) const override;
+        virtual void draw   (sf::RenderTarget& target, sf::RenderStates states) const override;
 
-    sf::Vector2f GetPos(void) const;
-    void         SetPos(sf::Vector2f pos);
+        virtual void Update(float dt);
 
-    void         SetOrigin(const sf::Vector2f& origin);
+        sf::Vector2f GetPos(void) const;
+        void         SetPos(sf::Vector2f pos);
 
-protected:
-    void SetState(vecsize_t state);
-    bool LoadTexture(const std::string& filename);
+        void         SetOrigin(const sf::Vector2f& origin);
 
-    // TODO: Replace sprites with animations
-    std::vector<sf::Sprite>  m_aSpriteStates;
-    sf::Vector2f m_pos;
+    protected:
+        void SetState(std::size_t state);
 
-private:
-    sf::Sprite *             m_pCurrentSpr2Draw;
-    sf::Texture              m_spriteSheet;
-    sf::Vector2u             m_textureSize;
+    protected:
+        sf::Vector2f    m_pos;
+        Animation       m_anim;
+        std::size_t     m_state;
 
-    sf::Transformable        m_transform;
+    private:
 
-    const vecsize_t          m_uNStates;
+        sf::Transformable m_transform;
+
 };
 
 #endif // DRAWABLEOBJECT_H
