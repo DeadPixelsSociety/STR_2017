@@ -30,6 +30,8 @@ add_executable(STR_2017
         src/tile.cpp
         include/tile.h
         src/spritemanager.cpp
-        include/spritemanager.h)
+        include/spritemanager.h
+        src/animation.cpp
+        include/animation.h)
 
 target_link_libraries(STR_2017 sfml-graphics-d sfml-window-d sfml-system-d)
