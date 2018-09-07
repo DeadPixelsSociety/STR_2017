@@ -80,6 +80,10 @@ void SpriteManager::AddSpriteSheet(const std::string& path, const std::string& s
             textureClip.top += textSize.y;
         }
     }
+    else
+    {
+        delete text;
+    }
 }
 
 SpriteManager::~SpriteManager(void)

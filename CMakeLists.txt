@@ -32,6 +32,8 @@ add_executable(STR_2017
         src/spritemanager.cpp
         include/spritemanager.h
         src/animation.cpp
-        include/animation.h)
+        include/animation.h
+        src/dynamicobject.cpp
+        include/dynamicobject.h)
 
 target_link_libraries(STR_2017 sfml-graphics-d sfml-window-d sfml-system-d)
